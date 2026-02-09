@@ -38,24 +38,31 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .github-toast {
-            position: fixed;
+        .project-toast {
+            position: absolute;
+            bottom: 100%;
             left: 50%;
-            top: 50%;
-            z-index: 60;
-            transform: translate(-50%, -50%) scale(0.96);
+            transform: translateX(-50%) scale(0.96);
             opacity: 0;
             pointer-events: none;
+            z-index: 10;
+            margin-bottom: 8px;
+            width: max-content;
+            max-width: 90%;
+        }
+        .project-toast.show {
+            opacity: 1;
+            animation: projectToastLaunch 4s ease-out forwards;
         }
         .github-toast.show {
             opacity: 1;
-            animation: toastLaunch 1.6s ease-out forwards;
+            animation: toastLaunch 4s ease-out forwards;
         }
-        @keyframes toastLaunch {
-            0% { transform: translate(-50%, -50%) scale(0.96); opacity: 0; }
-            8% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            60% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            100% { transform: translate(calc(-50% + var(--tx, 0px)), calc(-50% + var(--ty, -120px))) scale(1.1); opacity: 0; }
+        @keyframes projectToastLaunch {
+            0% { transform: translateX(-50%) scale(0.96) translateY(10px); opacity: 0; }
+            8% { transform: translateX(-50%) scale(1) translateY(0px); opacity: 1; }
+            97% { transform: translateX(-50%) scale(1) translateY(0px); opacity: 1; }
+            100% { transform: translateX(-50%) scale(1.1) translateY(-20px); opacity: 0; }
         }
         @keyframes blasterShot {
             0% { transform: translateX(-10%); opacity: 0; }
@@ -290,9 +297,19 @@
 <a class="flex-1 bg-primary text-white py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" href="mailto:amitoj2@ualberta.ca?subject=File%20System%20Simulator" target="_blank">
 <span class="material-symbols-outlined text-sm">mail</span> Contact
                         </a>
-<button class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" onclick="showGithubToast('File System Simulator')" type="button">
+<button class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" onclick="showGithubToast('filesystem')" type="button">
 <span class="material-symbols-outlined text-sm">code</span> GitHub
                         </button>
+</div>
+<!-- Individual toast for File System Simulator -->
+<div id="filesystem-toast" class="project-toast">
+<div class="glass-card rounded-xl px-4 py-3 flex items-center gap-3 shadow-lg">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+<div>
+<p class="text-sm font-semibold">File System Simulator is private for now 🚀</p>
+<p class="text-xs text-slate-300">Email amitoj2@ualberta.ca for the link.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -341,9 +358,19 @@
 <a class="flex-1 bg-primary text-white py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" href="mailto:amitoj2@ualberta.ca?subject=Social%20Distribution%20Network" target="_blank">
 <span class="material-symbols-outlined text-sm">mail</span> Contact
                         </a>
-<button class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" onclick="showGithubToast('Social Distribution Network')" type="button">
+<button class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" onclick="showGithubToast('social')" type="button">
 <span class="material-symbols-outlined text-sm">code</span> GitHub
                                                 </button>
+</div>
+<!-- Individual toast for Social Distribution Network -->
+<div id="social-toast" class="project-toast">
+<div class="glass-card rounded-xl px-4 py-3 flex items-center gap-3 shadow-lg">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+<div>
+<p class="text-sm font-semibold">Social Distribution Network is private for now 🚀</p>
+<p class="text-xs text-slate-300">Email amitoj2@ualberta.ca for the link.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -365,39 +392,43 @@
 <a class="flex-1 bg-primary text-white py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" href="mailto:amitoj2@ualberta.ca?subject=Mood-Link%20Tracker" target="_blank">
 <span class="material-symbols-outlined text-sm">mail</span> Contact
                         </a>
-<button class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" onclick="showGithubToast('Mood-Link Tracker')" type="button">
+<button class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" onclick="showGithubToast('mood')" type="button">
 <span class="material-symbols-outlined text-sm">code</span> GitHub
                                                 </button>
+</div>
+<!-- Individual toast for Mood-Link Tracker -->
+<div id="mood-toast" class="project-toast">
+<div class="glass-card rounded-xl px-4 py-3 flex items-center gap-3 shadow-lg">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+<div>
+<p class="text-sm font-semibold">Mood-Link Tracker is private for now 🚀</p>
+<p class="text-xs text-slate-300">Email amitoj2@ualberta.ca for the link.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 </main>
-<div id="github-toast" class="github-toast">
-<div class="glass-card rounded-xl px-4 py-3 flex items-center gap-3 shadow-lg">
-<span class="material-symbols-outlined text-primary">rocket_launch</span>
-<div>
-<p class="text-sm font-semibold">Private repo for now 🚀</p>
-<p class="text-xs text-slate-300">Email amitoj2@ualberta.ca for the link.</p>
-</div>
-</div>
-</div>
 <script>
-const toastEl = document.getElementById('github-toast');
-let toastTimer;
-function showGithubToast(project) {
-    if (!toastEl) return;
-    const title = toastEl.querySelector('p');
-    if (title) title.textContent = `${project} is private for now 🚀`;
-    const dx = Math.round((Math.random() * 2 - 1) * 160);
-    const dy = Math.round(-120 - (Math.random() * 140));
-    toastEl.style.setProperty('--tx', `${dx}px`);
-    toastEl.style.setProperty('--ty', `${dy}px`);
-    toastEl.classList.remove('show');
-    void toastEl.offsetWidth;
-    toastEl.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 6000);
+function showGithubToast(projectId) {
+    // Hide all project toasts first
+    const allToasts = document.querySelectorAll('.project-toast');
+    allToasts.forEach(toast => toast.classList.remove('show'));
+    
+    // Show the specific project toast
+    const toastEl = document.getElementById(`${projectId}-toast`);
+    if (toastEl) {
+        toastEl.classList.add('show');
+        // Clear any existing timer
+        if (window.projectToastTimer) {
+            clearTimeout(window.projectToastTimer);
+        }
+        // Set timer to hide the toast
+        window.projectToastTimer = setTimeout(() => {
+            toastEl.classList.remove('show');
+        }, 4000);
+    }
 }
 const gunToggle = document.getElementById('gun-toggle');
 const gunSpin = document.getElementById('gun-spin');
