@@ -86,8 +86,8 @@
         .blaster-shot:nth-child(5) { animation-delay: 1.4s; }
         .gun-toggle {
             position: relative;
-            width: 52px;
-            height: 52px;
+            width: 56px;
+            height: 56px;
             border-radius: 999px;
             background: rgba(75, 43, 238, 0.08);
             border: 1px solid rgba(75, 43, 238, 0.2);
@@ -96,34 +96,61 @@
             justify-content: center;
             cursor: pointer;
             transition: transform 200ms ease, box-shadow 200ms ease;
+            overflow: visible;
         }
-        .gun-toggle:hover { transform: scale(1.04); box-shadow: 0 0 16px rgba(75,43,238,0.35); }
-        .gun-core {
-            width: 30px;
-            height: 12px;
-            border-radius: 6px;
-            background: linear-gradient(90deg, #4b2bee, #8c7bff);
+        .gun-toggle:hover { transform: scale(1.04); box-shadow: 0 0 18px rgba(75,43,238,0.4); }
+        .gun-body {
+            width: 36px;
+            height: 18px;
             position: relative;
+            display: block;
         }
-        .gun-core::before {
-            content: '';
+        .gun-body svg { display: block; width: 100%; height: 100%; }
+        .gun-muzzle {
             position: absolute;
-            right: -10px;
-            top: 3px;
-            width: 12px;
-            height: 6px;
-            border-radius: 4px;
-            background: #c7bfff;
-        }
-        .gun-core::after {
-            content: '';
-            position: absolute;
-            left: 4px;
-            top: -6px;
+            right: -8px;
+            top: 6px;
             width: 10px;
             height: 6px;
-            border-radius: 4px;
-            background: #3120a5;
+            border-radius: 6px;
+            background: #c7bfff;
+        }
+        .gun-flash {
+            position: absolute;
+            right: -18px;
+            top: 0px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #fff1b8 0%, #ffc857 45%, rgba(255,200,87,0) 70%);
+            opacity: 0;
+            transform: scale(0.6);
+        }
+        .gun-bullet {
+            position: absolute;
+            right: -6px;
+            top: 9px;
+            height: 2px;
+            width: 4px;
+            border-radius: 999px;
+            background: #fff;
+            opacity: 0;
+        }
+        .gun-toggle.fire .gun-flash {
+            animation: muzzleFlash 0.35s ease-out;
+        }
+        .gun-toggle.fire .gun-bullet {
+            animation: bulletFly 0.45s ease-out;
+        }
+        @keyframes muzzleFlash {
+            0% { opacity: 0; transform: scale(0.6); }
+            20% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.4); }
+        }
+        @keyframes bulletFly {
+            0% { opacity: 0; transform: translateX(0); }
+            15% { opacity: 1; }
+            100% { opacity: 0; transform: translateX(36px); }
         }
         .gun-spin {
             animation: gunSpin 6s linear infinite;
@@ -175,7 +202,16 @@
 <div class="flex items-center gap-3 mb-3">
 <button class="gun-toggle" id="gun-toggle" type="button" aria-label="Toggle gun rotation">
 <div class="gun-spin" id="gun-spin">
-<div class="gun-core"></div>
+<div class="gun-body">
+<svg viewBox="0 0 120 60" aria-hidden="true">
+<path d="M10 28h54l14-10h18v14h-8v8H66l-6 12H40l4-12H10z" fill="#4b2bee"/>
+<rect x="28" y="34" width="16" height="18" rx="3" fill="#3120a5"/>
+<rect x="60" y="18" width="20" height="6" rx="3" fill="#8c7bff"/>
+</svg>
+<span class="gun-muzzle"></span>
+<span class="gun-flash"></span>
+<span class="gun-bullet"></span>
+</div>
 </div>
 </button>
 <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Featured Projects</h1>
@@ -347,6 +383,10 @@ const gunSpin = document.getElementById('gun-spin');
 if (gunToggle && gunSpin) {
     gunToggle.addEventListener('click', () => {
         gunSpin.classList.toggle('reverse');
+        gunToggle.classList.remove('fire');
+        void gunToggle.offsetWidth;
+        gunToggle.classList.add('fire');
+        setTimeout(() => gunToggle.classList.remove('fire'), 420);
     });
 }
 </script>

@@ -57,6 +57,11 @@
 @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 .floating{position:fixed;z-index:-40;pointer-events:none}
 .floating.circle{width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(75,43,238,0.18), transparent)}
+.name-glow{position:relative;display:inline-block}
+.name-glow::after{content:"";position:absolute;left:0;bottom:-8px;height:3px;width:100%;background:linear-gradient(90deg,transparent,#4b2bee,transparent);opacity:0.7;animation:scanline 2.8s ease-in-out infinite}
+@keyframes scanline{0%{transform:translateX(-40%);opacity:0}35%{opacity:0.8}100%{transform:translateX(40%);opacity:0}}
+.title-pulse{background:linear-gradient(90deg,#ffffff,#4b2bee,#ffffff);-webkit-background-clip:text;background-clip:text;color:transparent;animation:titleShift 6s ease-in-out infinite}
+@keyframes titleShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 </style>
 <!-- Sticky Navigation Bar -->
 <nav class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-white/10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
@@ -85,8 +90,8 @@
 </div>
 <!-- Headers -->
 <div class="space-y-4">
-<h1 class="text-5xl @[480px]:text-6xl font-black tracking-tighter leading-none">
-                    Amitoj <span class="text-primary">Singh</span>
+<h1 class="text-5xl @[480px]:text-6xl font-black tracking-tighter leading-none name-glow">
+                    Amitoj <span class="title-pulse">Singh</span>
 </h1>
 <h2 class="text-lg @[480px]:text-xl font-medium text-slate-600 dark:text-slate-400 leading-snug">
                     Fourth-year Computer Science Student | <br class="hidden sm:block"/>
