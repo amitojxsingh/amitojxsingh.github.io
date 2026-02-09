@@ -54,6 +54,10 @@
 @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 .floating{position:fixed;z-index:-40;pointer-events:none}
 .floating.circle{width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(75,43,238,0.12), transparent)}
+.clipboard-toast{position:fixed;left:50%;top:50%;z-index:60;transform:translate(-50%,-50%) scale(0.96);opacity:0;pointer-events:none}
+.clipboard-toast.show{opacity:1;animation:toastLaunch 3.5s ease-out forwards}
+@keyframes toastLaunch{0%{transform:translate(-50%,-50%) scale(0.96);opacity:0}8%{transform:translate(-50%,-50%) scale(1);opacity:1}60%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(calc(-50% + var(--tx,0px)),calc(-50% + var(--ty,-120px))) scale(1.1);opacity:0}}
+.glass-card{background:rgba(29,28,39,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1)}
 </style>
 <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 <!-- Top Navigation Bar -->
@@ -62,9 +66,9 @@
 <span class="material-symbols-outlined">arrow_back</span>
 </a>
 <h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center">Portfolio</h2>
-<a class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 cursor-pointer transition-colors" href="https://www.linkedin.com/in/amitojxsingh/" target="_blank" aria-label="Share on LinkedIn">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 cursor-pointer transition-colors" onclick="copyWebsiteLink()" aria-label="Copy website link">
 <span class="material-symbols-outlined text-slate-900 dark:text-white">share</span>
-</a>
+</button>
 </header>
 <main class="flex-1 overflow-y-auto pb-12">
 <!-- Profile Header Section -->
@@ -209,4 +213,34 @@
 </a>
 </nav>
 </div>
+<div id="clipboard-toast" class="clipboard-toast">
+<div class="glass-card rounded-xl px-4 py-3 flex items-center gap-3 shadow-lg">
+<span class="material-symbols-outlined text-primary">link</span>
+<div>
+<p class="text-sm font-semibold">Link copied! 🚀</p>
+<p class="text-xs text-slate-300">Share your portfolio</p>
+</div>
+</div>
+</div>
+<script>
+const clipboardToast = document.getElementById('clipboard-toast');
+let clipboardTimer;
+function copyWebsiteLink() {
+    const websiteUrl = 'https://amitojxsingh.github.io';
+    navigator.clipboard.writeText(websiteUrl).then(() => {
+        if (!clipboardToast) return;
+        const dx = Math.round((Math.random() * 2 - 1) * 160);
+        const dy = Math.round(-120 - (Math.random() * 140));
+        clipboardToast.style.setProperty('--tx', `${dx}px`);
+        clipboardToast.style.setProperty('--ty', `${dy}px`);
+        clipboardToast.classList.remove('show');
+        void clipboardToast.offsetWidth;
+        clipboardToast.classList.add('show');
+        clearTimeout(clipboardTimer);
+        clipboardTimer = setTimeout(() => clipboardToast.classList.remove('show'), 3500);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+    });
+}
+</script>
 </body></html>

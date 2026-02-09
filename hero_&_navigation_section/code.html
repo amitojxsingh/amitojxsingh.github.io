@@ -57,10 +57,11 @@
 @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 .floating{position:fixed;z-index:-40;pointer-events:none}
 .floating.circle{width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(75,43,238,0.18), transparent)}
-.name-glow{position:relative;display:inline-block}
-.name-glow::after{content:"";position:absolute;left:0;bottom:-8px;height:3px;width:100%;background:linear-gradient(90deg,transparent,#4b2bee,transparent);opacity:0.7;animation:scanline 2.8s ease-in-out infinite}
-@keyframes scanline{0%{transform:translateX(-40%);opacity:0}35%{opacity:0.8}100%{transform:translateX(40%);opacity:0}}
-.title-pulse{background:linear-gradient(90deg,#ffffff,#4b2bee,#ffffff);-webkit-background-clip:text;background-clip:text;color:transparent;animation:titleShift 6s ease-in-out infinite}
+.name-glow{position:relative;display:inline-block;animation:namePulse 4s ease-in-out infinite}
+.name-glow::after{content:"";position:absolute;left:0;bottom:-8px;height:4px;width:100%;background:linear-gradient(90deg,transparent,#4b2bee 20%,#8c7bff 50%,#4b2bee 80%,transparent);opacity:0;animation:scanline 2.8s ease-in-out infinite;box-shadow:0 0 12px rgba(75,43,238,0.6)}
+@keyframes scanline{0%{transform:translateX(-50%);opacity:0}20%{opacity:0.9}80%{opacity:0.9}100%{transform:translateX(50%);opacity:0}}
+@keyframes namePulse{0%{text-shadow:0 0 5px rgba(75,43,238,0.3)}50%{text-shadow:0 0 20px rgba(75,43,238,0.6),0 0 30px rgba(75,43,238,0.4)}100%{text-shadow:0 0 5px rgba(75,43,238,0.3)}}
+.title-pulse{background:linear-gradient(110deg,#ffffff 0%,#4b2bee 30%,#8c7bff 50%,#4b2bee 70%,#ffffff 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:titleShift 3s ease-in-out infinite;filter:drop-shadow(0 0 8px rgba(75,43,238,0.4))}
 @keyframes titleShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 </style>
 <!-- Sticky Navigation Bar -->

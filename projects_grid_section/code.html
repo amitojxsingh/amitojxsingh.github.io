@@ -53,8 +53,9 @@
         }
         @keyframes toastLaunch {
             0% { transform: translate(-50%, -50%) scale(0.96); opacity: 0; }
-            15% { opacity: 1; }
-            100% { transform: translate(calc(-50% + var(--tx, 0px)), calc(-50% + var(--ty, -120px))) scale(1); opacity: 0; }
+            8% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            60% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(calc(-50% + var(--tx, 0px)), calc(-50% + var(--ty, -120px))) scale(1.1); opacity: 0; }
         }
         @keyframes blasterShot {
             0% { transform: translateX(-10%); opacity: 0; }
@@ -100,57 +101,62 @@
         }
         .gun-toggle:hover { transform: scale(1.04); box-shadow: 0 0 18px rgba(75,43,238,0.4); }
         .gun-body {
-            width: 36px;
-            height: 18px;
+            width: 48px;
+            height: 24px;
             position: relative;
             display: block;
         }
-        .gun-body svg { display: block; width: 100%; height: 100%; }
+        .gun-body svg { display: block; width: 100%; height: 100%; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
         .gun-muzzle {
             position: absolute;
-            right: -8px;
-            top: 6px;
-            width: 10px;
-            height: 6px;
-            border-radius: 6px;
-            background: #c7bfff;
+            right: -4px;
+            top: 8px;
+            width: 6px;
+            height: 8px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, #2d1a70, #4b2bee);
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);
         }
         .gun-flash {
             position: absolute;
-            right: -18px;
-            top: 0px;
-            width: 14px;
-            height: 14px;
+            right: -24px;
+            top: -2px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
-            background: radial-gradient(circle, #fff1b8 0%, #ffc857 45%, rgba(255,200,87,0) 70%);
+            background: radial-gradient(circle, #ffed4e 0%, #ff8c42 30%, #ff3838 60%, rgba(255,56,56,0) 80%);
             opacity: 0;
-            transform: scale(0.6);
+            transform: scale(0.4);
+            pointer-events: none;
         }
         .gun-bullet {
             position: absolute;
-            right: -6px;
-            top: 9px;
-            height: 2px;
-            width: 4px;
+            right: 0px;
+            top: 11px;
+            height: 3px;
+            width: 6px;
             border-radius: 999px;
-            background: #fff;
+            background: linear-gradient(90deg, #ffed4e, #ffd700);
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
             opacity: 0;
+            pointer-events: none;
         }
         .gun-toggle.fire .gun-flash {
-            animation: muzzleFlash 0.35s ease-out;
+            animation: muzzleFlash 0.25s ease-out;
         }
         .gun-toggle.fire .gun-bullet {
-            animation: bulletFly 0.45s ease-out;
+            animation: bulletFly 0.4s ease-out;
         }
         @keyframes muzzleFlash {
-            0% { opacity: 0; transform: scale(0.6); }
-            20% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(1.4); }
+            0% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+            10% { opacity: 1; transform: scale(1.2) rotate(15deg); }
+            30% { opacity: 0.9; transform: scale(1.5) rotate(-10deg); }
+            100% { opacity: 0; transform: scale(2) rotate(20deg); }
         }
         @keyframes bulletFly {
-            0% { opacity: 0; transform: translateX(0); }
-            15% { opacity: 1; }
-            100% { opacity: 0; transform: translateX(36px); }
+            0% { opacity: 0; transform: translateX(0) scale(1); }
+            10% { opacity: 1; transform: translateX(5px) scale(1); }
+            100% { opacity: 0; transform: translateX(60px) scale(0.6); }
         }
         .gun-spin {
             animation: gunSpin 6s linear infinite;
@@ -203,10 +209,25 @@
 <button class="gun-toggle" id="gun-toggle" type="button" aria-label="Toggle gun rotation">
 <div class="gun-spin" id="gun-spin">
 <div class="gun-body">
-<svg viewBox="0 0 120 60" aria-hidden="true">
-<path d="M10 28h54l14-10h18v14h-8v8H66l-6 12H40l4-12H10z" fill="#4b2bee"/>
-<rect x="28" y="34" width="16" height="18" rx="3" fill="#3120a5"/>
-<rect x="60" y="18" width="20" height="6" rx="3" fill="#8c7bff"/>
+<svg viewBox="0 0 140 70" aria-hidden="true">
+<!-- Gun barrel -->
+<rect x="75" y="27" width="50" height="16" rx="2" fill="#4b2bee"/>
+<rect x="120" y="30" width="8" height="10" rx="1" fill="#2d1a70"/>
+<!-- Gun body -->
+<path d="M10 32h65v10H10z" fill="#4b2bee"/>
+<!-- Trigger guard -->
+<path d="M28 42v12a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4v-12z" fill="#3120a5"/>
+<!-- Grip -->
+<rect x="32" y="42" width="8" height="18" rx="2" fill="#6b4bff"/>
+<!-- Magazine -->
+<rect x="45" y="42" width="14" height="20" rx="3" fill="#2d1a70"/>
+<!-- Slide -->
+<rect x="62" y="24" width="28" height="8" rx="1" fill="#8c7bff"/>
+<rect x="72" y="26" width="8" height="4" rx="1" fill="#3120a5"/>
+<!-- Rear sight -->
+<rect x="88" y="22" width="4" height="6" rx="1" fill="#2d1a70"/>
+<!-- Front sight -->
+<rect x="118" y="24" width="4" height="6" rx="1" fill="#2d1a70"/>
 </svg>
 <span class="gun-muzzle"></span>
 <span class="gun-flash"></span>
@@ -376,7 +397,7 @@ function showGithubToast(project) {
     void toastEl.offsetWidth;
     toastEl.classList.add('show');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 1800);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 3500);
 }
 const gunToggle = document.getElementById('gun-toggle');
 const gunSpin = document.getElementById('gun-spin');
