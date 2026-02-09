@@ -46,6 +46,16 @@
   </style>
   </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen">
+<!-- Animated background -->
+<div class="animated-bg" aria-hidden="true"></div>
+<div class="floating circle" style="top:10%;left:-6%;"></div>
+<style>
+:root{--primary:#4b2bee}
+.animated-bg{position:fixed;inset:0;z-index:-50;background:linear-gradient(90deg,#051026,#0b0718,#081028);background-size:350% 350%;animation:gradientShift 22s ease infinite}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.floating{position:fixed;z-index:-40;pointer-events:none}
+.floating.circle{width:240px;height:240px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(75,43,238,0.12), transparent)}
+</style>
 <!-- Top Navigation Bar -->
 <nav class="sticky top-0 z-50 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-3 border-b border-slate-200 dark:border-slate-800">
 <div class="flex-1 flex items-center gap-3">
@@ -53,8 +63,8 @@
 <div class="w-full h-full bg-cover bg-center" data-alt="Developer profile professional headshot placeholder" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDoeAFtueNzyE1V8DSdBZgSXy-wtV2K9jRdaz1jPt7sdWregQfaE8tJMFSveA0-SVQcB01OtZB5v7qbp0Zq9wm4mPNv-MAaJtsCrlnXCJ4xLPgdvgAPK2BQ2FxfsItQXYMRYdd00owHyRmkyF8DwfmMbUJCUy3ZqUYa92FLXQwyecQ-4nJJFiFif6mBdDhX4mW5pypDQ3_v6oeIaTvQm_KOcco5L5m_orNApQIJYSTJYBjTcIlKkr3jYr53M4GYZR5Ov-RyLh5W29rM')"></div>
 </div>
 <div>
-<h2 class="text-sm font-bold leading-none tracking-tight">Alex Chen</h2>
-<p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider mt-1">Software Engineer</p>
+<h2 class="text-sm font-bold leading-none tracking-tight">Amitoj Singh</h2>
+<p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider mt-1">Technical Animation & Gameplay Systems</p>
 </div>
 </div>
 <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/10 text-primary border border-primary/20 text-xs font-bold">
@@ -67,36 +77,36 @@
 <header class="pt-2">
 <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">Featured Projects</h1>
 <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-sm">
-                Engineering software systems with a focus on high-performance architectures, scalability, and robust software practices.
+                Selected work focusing on gameplay animation integration, systems engineering, and tooling for high-fidelity production.
             </p>
 </header>
 <!-- Projects Grid -->
 <div class="grid grid-cols-1 gap-6">
-<!-- Project 1: Systems Development -->
+<!-- Project 1: Procedural Locomotion & MoCap Integration System -->
 <div class="glass-card rounded-xl overflow-hidden flex flex-col">
-<div class="h-48 w-full bg-cover bg-center relative" data-alt="Visual representation of memory management and data structures" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBuYgg8_T_U3tmxicpF5V382eLSGTL8pG9Hx2a2I2E2imUgvJX3B4tmVeaBw6Di76OEEQ2RvikxVka8GgZq8Ge_btO9gPN-VJaLD3vNk5d_hzQoTolIlp0R6gqU4CFXgHjNChrLqvZREAQxuY5EaYfeNCZdmyp_EaWQHpdHiNB4FY5emuILaukbKvNDOQ7hrxpdZIP_QnY09yD34rRfXPSmhPXNxsJZrxSSSn9cCSVKyfjbNrbfzrfWIPRHy_porE1AF6cwpV0bg1Q9')">
+<div class="h-48 w-full bg-cover bg-center relative" data-alt="Procedural locomotion and MoCap integration" style="background-image: url('https://images.unsplash.com/photo-1600267169827-3d6c47b2b1c1?auto=format&fit=crop&w=1200&q=60')">
 <div class="absolute top-3 left-3 flex gap-2">
-<span class="px-2 py-1 bg-black/50 backdrop-blur-md text-[10px] font-bold text-white rounded border border-white/10 uppercase tracking-widest">Systems</span>
+<span class="px-2 py-1 bg-black/50 backdrop-blur-md text-[10px] font-bold text-white rounded border border-white/10 uppercase tracking-widest">Animation</span>
 </div>
 </div>
 <div class="p-5 flex flex-col flex-1">
 <div class="flex gap-2 mb-3">
 <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">C++</span>
-<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Memory Management</span>
-<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Linux</span>
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Maya</span>
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Unreal</span>
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Python</span>
 </div>
-<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">High-Performance Cache Engine</h3>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Procedural Locomotion &amp; MoCap Integration</h3>
 <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-normal">
-<span class="font-bold text-slate-900 dark:text-slate-200">Problem:</span> High latency in distributed data retrieval. <br/>
-<span class="font-bold text-slate-900 dark:text-slate-200">Solution:</span> Developed a thread-safe LRU cache in C++ with O(1) complexity, reducing data access time by 65%.
+<span class="font-bold text-slate-900 dark:text-slate-200">Summary:</span> Processed and cleaned raw motion-capture, retargeted to custom rigs, and implemented gameplay animation state machines in Unreal Engine. Focused on weight, timing, and root-motion stability to reduce foot-sliding.
                     </p>
 <div class="mt-auto flex items-center gap-3">
 <button class="flex-1 bg-primary text-white py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-sm">open_in_new</span> Live Demo
+<span class="material-symbols-outlined text-sm">open_in_new</span> Demo
                         </button>
-<button class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2">
+<a class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" href="https://github.com/amitojxsingh" target="_blank">
 <span class="material-symbols-outlined text-sm">code</span> GitHub
-                        </button>
+                        </a>
 </div>
 </div>
 </div>

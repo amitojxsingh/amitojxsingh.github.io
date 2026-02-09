@@ -46,6 +46,18 @@
   </style>
   </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
+<!-- Animated background (subtle gradient + soft blobs) -->
+<div class="animated-bg" aria-hidden="true"></div>
+<div class="floating circle" style="top:6%;left:-6%;"></div>
+<div class="floating circle" style="bottom:6%;right:-8%;width:260px;height:260px;opacity:0.08"></div>
+
+<style>
+:root{--primary:#4b2bee}
+.animated-bg{position:fixed;inset:0;z-index:-50;background:linear-gradient(120deg,#070712,#0b0720,#07102a);background-size:300% 300%;animation:gradientShift 18s ease infinite}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.floating{position:fixed;z-index:-40;pointer-events:none}
+.floating.circle{width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(75,43,238,0.18), transparent)}
+</style>
 <!-- Sticky Navigation Bar -->
 <nav class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-white/10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
 <div class="flex items-center justify-between px-6 h-16 max-w-screen-xl mx-auto">
@@ -53,7 +65,7 @@
 <div class="bg-primary p-1.5 rounded-lg flex items-center justify-center text-white">
 <span class="material-symbols-outlined text-[20px]">terminal</span>
 </div>
-<span class="text-xl font-bold tracking-tight">JD.</span>
+<span class="text-xl font-bold tracking-tight">AS.</span>
 </div>
 <!-- Mobile Menu Toggle -->
 <button class="p-2 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg transition-colors">
@@ -77,11 +89,11 @@
 <!-- Headers -->
 <div class="space-y-4">
 <h1 class="text-5xl @[480px]:text-6xl font-black tracking-tighter leading-none">
-                    John <span class="text-primary">Doe</span>
+                    Amitoj <span class="text-primary">Singh</span>
 </h1>
 <h2 class="text-lg @[480px]:text-xl font-medium text-slate-600 dark:text-slate-400 leading-snug">
                     Computer Science Student | <br class="hidden sm:block"/>
-<span class="text-slate-900 dark:text-white">Software Practices &amp; Systems Development</span>
+<span class="text-slate-900 dark:text-white">Technical Animation &amp; Gameplay Systems</span>
 </h2>
 <p class="text-base text-slate-500 dark:text-slate-400 max-w-md leading-relaxed">
                     Building scalable systems and solving complex problems through clean, efficient code and modern architecture.
@@ -93,10 +105,10 @@
 <span>View My Work</span>
 <span class="material-symbols-outlined">arrow_forward</span>
 </button>
-<button class="flex h-14 items-center justify-center gap-2 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-900 dark:text-white font-bold rounded-xl transition-all active:scale-[0.98] px-8 border border-slate-200 dark:border-white/10">
+<a href="../resume.txt" download class="flex h-14 items-center justify-center gap-2 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-900 dark:text-white font-bold rounded-xl transition-all active:scale-[0.98] px-8 border border-slate-200 dark:border-white/10">
 <span class="material-symbols-outlined">download</span>
 <span>Download Resume</span>
-</button>
+</a>
 </div>
 <!-- Quick Links / Tab Bar -->
 <div class="pt-12">

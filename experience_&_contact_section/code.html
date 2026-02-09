@@ -42,6 +42,16 @@
   </style>
   </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100 antialiased">
+<!-- Animated background -->
+<div class="animated-bg" aria-hidden="true"></div>
+<div class="floating circle" style="top:6%;left:-6%;"></div>
+<style>
+:root{--primary:#4b2bee}
+.animated-bg{position:fixed;inset:0;z-index:-50;background:linear-gradient(160deg,#061021,#12061a,#07102a);background-size:300% 300%;animation:gradientShift 18s ease infinite}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.floating{position:fixed;z-index:-40;pointer-events:none}
+.floating.circle{width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(75,43,238,0.12), transparent)}
+</style>
 <!-- Container for iOS Phone Form Factor -->
 <div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
 <!-- Top App Bar -->
@@ -59,27 +69,23 @@
 <div class="grid grid-cols-[40px_1fr] gap-x-4">
 <div class="flex flex-col items-center">
 <div class="flex items-center justify-center size-10 rounded-full bg-primary/10 border-2 border-primary text-primary z-10 bg-background-dark">
-<span class="material-symbols-outlined text-[20px]">terminal</span>
+<span class="material-symbols-outlined text-[20px]">work</span>
 </div>
 <div class="w-[2px] bg-primary/30 h-full -mt-2"></div>
 </div>
 <div class="flex flex-1 flex-col pb-10 pt-1">
 <div class="flex justify-between items-start mb-1">
-<p class="text-gray-900 dark:text-white text-lg font-bold leading-tight">Software Engineering Intern</p>
+<p class="text-gray-900 dark:text-white text-lg font-bold leading-tight">Software Developer Intern</p>
 </div>
-<p class="text-primary font-semibold text-sm mb-3">TechFlow Systems • Summer 2023</p>
+<p class="text-primary font-semibold text-sm mb-3">Nestuity • Sept 2025 – Dec 2025</p>
 <ul class="space-y-3">
 <li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
 <span class="text-primary mt-1 text-[8px]">•</span>
-<span>Optimized core API latency by 20% by implementing Redis caching and asynchronous job processing.</span>
+<span>Managed deployment procedures and documentation for Docker and AWS environments.</span>
 </li>
 <li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
 <span class="text-primary mt-1 text-[8px]">•</span>
-<span>Developed an internal dashboard using React and GraphQL, improving developer productivity by 15%.</span>
-</li>
-<li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-<span class="text-primary mt-1 text-[8px]">•</span>
-<span>Collaborated on migrating legacy microservices to a containerized Docker environment.</span>
+<span>Practiced CI/CD and participated in code reviews to improve reliability and security.</span>
 </li>
 </ul>
 </div>
@@ -88,21 +94,21 @@
 <div class="grid grid-cols-[40px_1fr] gap-x-4">
 <div class="flex flex-col items-center">
 <div class="flex items-center justify-center size-10 rounded-full bg-primary/10 border-2 border-primary text-primary z-10 bg-background-dark">
-<span class="material-symbols-outlined text-[20px]">code</span>
+<span class="material-symbols-outlined text-[20px]">school</span>
 </div>
 <div class="w-[2px] bg-primary/30 h-full -mt-2"></div>
 </div>
 <div class="flex flex-1 flex-col pb-10 pt-1">
-<p class="text-gray-900 dark:text-white text-lg font-bold leading-tight">Open Source Contributor</p>
-<p class="text-primary font-semibold text-sm mb-3">System-Core Repo • 2022 - Present</p>
+<p class="text-gray-900 dark:text-white text-lg font-bold leading-tight">Undergraduate Teaching Assistant</p>
+<p class="text-primary font-semibold text-sm mb-3">University of Alberta • Sept 2024 – Present</p>
 <ul class="space-y-3">
 <li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
 <span class="text-primary mt-1 text-[8px]">•</span>
-<span>Contributed to low-level memory management modules written in Rust.</span>
+<span>Supported 100+ students with programming and logic, providing debugging guidance and mentorship.</span>
 </li>
 <li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
 <span class="text-primary mt-1 text-[8px]">•</span>
-<span>Fixed 15+ high-priority bugs related to thread synchronization and race conditions.</span>
+<span>Assisted in grading, office hours, and clarifying core CS concepts to improve student outcomes.</span>
 </li>
 </ul>
 </div>
@@ -131,28 +137,28 @@
 <span class="material-symbols-outlined text-[32px]">school</span>
 </div>
 <div class="flex flex-col justify-center">
-<p class="text-gray-900 dark:text-white text-lg font-bold leading-tight">B.S. in Computer Science</p>
-<p class="text-gray-500 dark:text-gray-400 text-sm font-medium mt-1">University of Technology</p>
-<p class="text-primary text-xs font-bold mt-1">GPA: 3.9/4.0 • Expected 2025</p>
+<p class="text-gray-900 dark:text-white text-lg font-bold leading-tight">B.Sc. in Computer Science</p>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-medium mt-1">University of Alberta</p>
+<p class="text-primary text-xs font-bold mt-1">Specialization: Software Practices • Expected 2026+</p>
 </div>
 </div>
 <!-- Contact Section -->
 <div class="mt-16 px-4 pb-12">
 <h2 class="text-gray-900 dark:text-white tracking-tight text-[28px] font-bold leading-tight text-center pb-8">Let's Connect</h2>
 <div class="grid grid-cols-3 gap-4">
-<a class="flex flex-col items-center justify-center aspect-square bg-white dark:bg-[#1e1a3a] rounded-2xl border border-gray-100 dark:border-white/5 hover:scale-95 transition-transform" href="#">
+<a class="flex flex-col items-center justify-center aspect-square bg-white dark:bg-[#1e1a3a] rounded-2xl border border-gray-100 dark:border-white/5 hover:scale-95 transition-transform" href="mailto:amitoj2@ualberta.ca">
 <div class="text-primary mb-2">
 <span class="material-symbols-outlined text-[32px]">mail</span>
 </div>
 <span class="text-xs font-semibold text-gray-500 dark:text-gray-400">Email</span>
 </a>
-<a class="flex flex-col items-center justify-center aspect-square bg-white dark:bg-[#1e1a3a] rounded-2xl border border-gray-100 dark:border-white/5 hover:scale-95 transition-transform" href="#">
+<a class="flex flex-col items-center justify-center aspect-square bg-white dark:bg-[#1e1a3a] rounded-2xl border border-gray-100 dark:border-white/5 hover:scale-95 transition-transform" href="https://www.linkedin.com/in/amitojxsingh/" target="_blank">
 <div class="text-primary mb-2">
 <span class="material-symbols-outlined text-[32px]">link</span>
 </div>
 <span class="text-xs font-semibold text-gray-500 dark:text-gray-400">LinkedIn</span>
 </a>
-<a class="flex flex-col items-center justify-center aspect-square bg-white dark:bg-[#1e1a3a] rounded-2xl border border-gray-100 dark:border-white/5 hover:scale-95 transition-transform" href="#">
+<a class="flex flex-col items-center justify-center aspect-square bg-white dark:bg-[#1e1a3a] rounded-2xl border border-gray-100 dark:border-white/5 hover:scale-95 transition-transform" href="https://github.com/amitojxsingh" target="_blank">
 <div class="text-primary mb-2">
 <span class="material-symbols-outlined text-[32px]">dataset</span>
 </div>

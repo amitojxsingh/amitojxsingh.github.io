@@ -45,6 +45,16 @@
   </style>
   </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300">
+<!-- Animated background -->
+<div class="animated-bg" aria-hidden="true"></div>
+<div class="floating circle" style="top:8%;left:-6%;"></div>
+<style>
+:root{--primary:#4b2bee}
+.animated-bg{position:fixed;inset:0;z-index:-50;background:linear-gradient(135deg,#071025,#0b0716,#07102a);background-size:400% 400%;animation:gradientShift 20s ease infinite}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.floating{position:fixed;z-index:-40;pointer-events:none}
+.floating.circle{width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(75,43,238,0.12), transparent)}
+</style>
 <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 <!-- Top Navigation Bar -->
 <header class="sticky top-0 z-50 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md p-4 justify-between border-b border-slate-200 dark:border-slate-800">
@@ -70,12 +80,13 @@
 </div>
 </div>
 <div class="flex flex-col items-center space-y-2">
-<h1 class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight text-center">Software Systems Specialist</h1>
+</h1>
+<h1 class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight text-center">Amitoj Singh</h1>
 <div class="flex flex-col items-center">
 <span class="text-primary font-medium text-sm px-3 py-1 rounded-full bg-primary/10">Computer Science Student</span>
-<p class="text-slate-500 dark:text-slate-400 text-sm mt-2 text-center max-w-[280px]">
-                                Engineering high-performance software and distributed architectures.
-                            </p>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-2 text-center max-w-[320px]">
+                        Fourth-year Computer Science student specializing in Software Practices with a focus on Technical Animation and Gameplay Systems. Proficient in C++ and Python, with experience integrating animation systems into real-time engines and debugging complex behaviors.
+                    </p>
 </div>
 </div>
 </div>
@@ -88,10 +99,10 @@
 </div>
 <div class="space-y-4 text-slate-600 dark:text-slate-400 text-base leading-relaxed">
 <p>
-                        I am a Computer Science student dedicated to systems development and high-performance software practices. My work focuses on building scalable distributed systems and understanding the low-level intricacies of memory management and OS internals.
+                        I focus on technical animation and gameplay systems — processing motion-capture, retargeting to custom rigs, and integrating animation state machines into real-time engines. I iterate on animation polish, root-motion fixes, and foot-placement stability.
                     </p>
 <p>
-                        Specializing in performance-aware design, I strive to bridge the gap between high-level application logic and low-level system efficiency. I am passionate about crafting robust backends and exploring the boundaries of concurrent programming.
+                        I combine practical engineering with animation artistry, using C++ and Python to build reliable integration layers and tools that improve production and runtime behavior.
                     </p>
 </div>
 </section>
@@ -109,10 +120,10 @@
                     </h3>
 <div class="flex flex-wrap gap-2">
 <span class="px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700">C++</span>
-<span class="px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700">Java</span>
 <span class="px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700">Python</span>
-<span class="px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700">Go</span>
-<span class="px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700">Rust</span>
+<span class="px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700">Blueprints</span>
+<span class="px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700">Maya</span>
+<span class="px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700">Blender</span>
 </div>
 </div>
 <!-- Frameworks -->
@@ -122,10 +133,9 @@
                         Frameworks
                     </h3>
 <div class="flex flex-wrap gap-2">
-<span class="px-3 py-1.5 bg-primary/10 text-primary rounded-lg text-sm font-medium border border-primary/20">Spring Boot</span>
-<span class="px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700">React</span>
-<span class="px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700">Node.js</span>
-<span class="px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700">gRPC</span>
+<span class="px-3 py-1.5 bg-primary/10 text-primary rounded-lg text-sm font-medium border border-primary/20">Unreal Engine</span>
+<span class="px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700">Unity</span>
+<span class="px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700">Maya</span>
 </div>
 </div>
 <!-- Concepts -->
@@ -136,26 +146,26 @@
                     </h3>
 <div class="grid grid-cols-1 gap-2">
 <div class="flex items-center gap-3 p-3 bg-slate-100 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-800">
-<span class="material-symbols-outlined text-primary text-lg">hub</span>
-<span class="text-sm font-medium">Distributed Systems</span>
+<span class="material-symbols-outlined text-primary text-lg">theaters</span>
+<span class="text-sm font-medium">Animation Fundamentals (Weight, Timing, Posing)</span>
 </div>
 <div class="flex items-center gap-3 p-3 bg-slate-100 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-800">
-<span class="material-symbols-outlined text-primary text-lg">database</span>
-<span class="text-sm font-medium">SQL &amp; NoSQL Optimization</span>
+<span class="material-symbols-outlined text-primary text-lg">integration_instructions</span>
+<span class="text-sm font-medium">Integration Testing &amp; Engine Integration</span>
 </div>
 <div class="flex items-center gap-3 p-3 bg-slate-100 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-800">
-<span class="material-symbols-outlined text-primary text-lg">memory</span>
-<span class="text-sm font-medium">OS Internals &amp; Memory Mgmt</span>
+<span class="material-symbols-outlined text-primary text-lg">bug_report</span>
+<span class="text-sm font-medium">Debugging &amp; Optimization</span>
 </div>
 </div>
 </div>
 </section>
 <!-- Action Button -->
 <div class="px-6 mt-4">
-<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/30 transition-all active:scale-[0.98]">
+<a href="../resume.txt" download class="w-full inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/30 transition-all active:scale-[0.98]">
 <span class="material-symbols-outlined">download</span>
                     Download CV
-                </button>
+                </a>
 </div>
 </main>
 <!-- Bottom Tab Bar (iOS Style) -->
