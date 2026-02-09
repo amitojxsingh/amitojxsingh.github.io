@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Experience &amp; Contact Section</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4b2bee",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100 antialiased">
+<!-- Container for iOS Phone Form Factor -->
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
+<!-- Top App Bar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10 border-b border-gray-200 dark:border-gray-800">
+<div class="text-gray-900 dark:text-white flex size-12 shrink-0 items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined">arrow_back_ios</span>
+</div>
+<h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Portfolio</h2>
+</div>
+<!-- Experience Header -->
+<h2 class="text-gray-900 dark:text-white tracking-tight text-[28px] font-bold leading-tight px-4 text-left pb-6 pt-8">Experience</h2>
+<!-- Vertical Timeline -->
+<div class="px-4 space-y-0">
+<!-- Timeline Item 1 -->
+<div class="grid grid-cols-[40px_1fr] gap-x-4">
+<div class="flex flex-col items-center">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/10 border-2 border-primary text-primary z-10 bg-background-dark">
+<span class="material-symbols-outlined text-[20px]">terminal</span>
+</div>
+<div class="w-[2px] bg-primary/30 h-full -mt-2"></div>
+</div>
+<div class="flex flex-1 flex-col pb-10 pt-1">
+<div class="flex justify-between items-start mb-1">
+<p class="text-gray-900 dark:text-white text-lg font-bold leading-tight">Software Engineering Intern</p>
+</div>
+<p class="text-primary font-semibold text-sm mb-3">TechFlow Systems • Summer 2023</p>
+<ul class="space-y-3">
+<li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+<span class="text-primary mt-1 text-[8px]">•</span>
+<span>Optimized core API latency by 20% by implementing Redis caching and asynchronous job processing.</span>
+</li>
+<li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+<span class="text-primary mt-1 text-[8px]">•</span>
+<span>Developed an internal dashboard using React and GraphQL, improving developer productivity by 15%.</span>
+</li>
+<li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+<span class="text-primary mt-1 text-[8px]">•</span>
+<span>Collaborated on migrating legacy microservices to a containerized Docker environment.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="grid grid-cols-[40px_1fr] gap-x-4">
+<div class="flex flex-col items-center">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/10 border-2 border-primary text-primary z-10 bg-background-dark">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</div>
+<div class="w-[2px] bg-primary/30 h-full -mt-2"></div>
+</div>
+<div class="flex flex-1 flex-col pb-10 pt-1">
+<p class="text-gray-900 dark:text-white text-lg font-bold leading-tight">Open Source Contributor</p>
+<p class="text-primary font-semibold text-sm mb-3">System-Core Repo • 2022 - Present</p>
+<ul class="space-y-3">
+<li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+<span class="text-primary mt-1 text-[8px]">•</span>
+<span>Contributed to low-level memory management modules written in Rust.</span>
+</li>
+<li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+<span class="text-primary mt-1 text-[8px]">•</span>
+<span>Fixed 15+ high-priority bugs related to thread synchronization and race conditions.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Timeline Item 3 (End) -->
+<div class="grid grid-cols-[40px_1fr] gap-x-4">
+<div class="flex flex-col items-center">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/10 border-2 border-primary text-primary z-10 bg-background-dark">
+<span class="material-symbols-outlined text-[20px]">engineering</span>
+</div>
+<div class="w-[2px] bg-primary/30 h-10 -mt-2 opacity-0"></div>
+</div>
+<div class="flex flex-1 flex-col pb-8 pt-1">
+<p class="text-gray-900 dark:text-white text-lg font-bold leading-tight">Technical Lead</p>
+<p class="text-primary font-semibold text-sm mb-3">University Robotics Club • 2021 - 2022</p>
+<p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                        Led a team of 12 students in developing autonomous navigation firmware for the annual national competition.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Education Section -->
+<h2 class="text-gray-900 dark:text-white tracking-tight text-[28px] font-bold leading-tight px-4 text-left pb-3 pt-10">Education</h2>
+<div class="flex items-center gap-4 bg-white dark:bg-[#1e1a3a] mx-4 rounded-xl p-4 border border-gray-100 dark:border-white/5 shadow-sm">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-14">
+<span class="material-symbols-outlined text-[32px]">school</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-gray-900 dark:text-white text-lg font-bold leading-tight">B.S. in Computer Science</p>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-medium mt-1">University of Technology</p>
+<p class="text-primary text-xs font-bold mt-1">GPA: 3.9/4.0 • Expected 2025</p>
+</div>
+</div>
+<!-- Contact Section -->
+<div class="mt-16 px-4 pb-12">
+<h2 class="text-gray-900 dark:text-white tracking-tight text-[28px] font-bold leading-tight text-center pb-8">Let's Connect</h2>
+<div class="grid grid-cols-3 gap-4">
+<a class="flex flex-col items-center justify-center aspect-square bg-white dark:bg-[#1e1a3a] rounded-2xl border border-gray-100 dark:border-white/5 hover:scale-95 transition-transform" href="#">
+<div class="text-primary mb-2">
+<span class="material-symbols-outlined text-[32px]">mail</span>
+</div>
+<span class="text-xs font-semibold text-gray-500 dark:text-gray-400">Email</span>
+</a>
+<a class="flex flex-col items-center justify-center aspect-square bg-white dark:bg-[#1e1a3a] rounded-2xl border border-gray-100 dark:border-white/5 hover:scale-95 transition-transform" href="#">
+<div class="text-primary mb-2">
+<span class="material-symbols-outlined text-[32px]">link</span>
+</div>
+<span class="text-xs font-semibold text-gray-500 dark:text-gray-400">LinkedIn</span>
+</a>
+<a class="flex flex-col items-center justify-center aspect-square bg-white dark:bg-[#1e1a3a] rounded-2xl border border-gray-100 dark:border-white/5 hover:scale-95 transition-transform" href="#">
+<div class="text-primary mb-2">
+<span class="material-symbols-outlined text-[32px]">dataset</span>
+</div>
+<span class="text-xs font-semibold text-gray-500 dark:text-gray-400">GitHub</span>
+</a>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-auto py-8 border-t border-gray-200 dark:border-gray-800 flex flex-col items-center gap-2">
+<p class="text-gray-400 dark:text-gray-500 text-xs font-medium">© 2024 Developer Portfolio</p>
+<div class="flex items-center gap-2 text-gray-400 dark:text-gray-600 text-[10px] uppercase tracking-widest">
+<span>Built with</span>
+<span class="text-primary font-bold">React</span>
+<span>&amp;</span>
+<span class="text-primary font-bold">Tailwind</span>
+</div>
+</footer>
+<!-- Extra spacing for iOS Home Indicator -->
+<div class="h-8 bg-background-light dark:bg-background-dark"></div>
+</div>
+</body></html>

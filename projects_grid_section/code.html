@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Projects Grid Section</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4b2bee",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0a0a0f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(29, 28, 39, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen">
+<!-- Top Navigation Bar -->
+<nav class="sticky top-0 z-50 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-3 border-b border-slate-200 dark:border-slate-800">
+<div class="flex-1 flex items-center gap-3">
+<div class="size-10 rounded-full bg-primary flex items-center justify-center text-white overflow-hidden ring-2 ring-primary/20">
+<div class="w-full h-full bg-cover bg-center" data-alt="Developer profile professional headshot placeholder" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDoeAFtueNzyE1V8DSdBZgSXy-wtV2K9jRdaz1jPt7sdWregQfaE8tJMFSveA0-SVQcB01OtZB5v7qbp0Zq9wm4mPNv-MAaJtsCrlnXCJ4xLPgdvgAPK2BQ2FxfsItQXYMRYdd00owHyRmkyF8DwfmMbUJCUy3ZqUYa92FLXQwyecQ-4nJJFiFif6mBdDhX4mW5pypDQ3_v6oeIaTvQm_KOcco5L5m_orNApQIJYSTJYBjTcIlKkr3jYr53M4GYZR5Ov-RyLh5W29rM')"></div>
+</div>
+<div>
+<h2 class="text-sm font-bold leading-none tracking-tight">Alex Chen</h2>
+<p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider mt-1">Software Engineer</p>
+</div>
+</div>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/10 text-primary border border-primary/20 text-xs font-bold">
+<span class="material-symbols-outlined text-sm">download</span>
+            Resume
+        </button>
+</nav>
+<main class="p-4 space-y-6">
+<!-- Hero Section -->
+<header class="pt-2">
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">Featured Projects</h1>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-sm">
+                Engineering software systems with a focus on high-performance architectures, scalability, and robust software practices.
+            </p>
+</header>
+<!-- Projects Grid -->
+<div class="grid grid-cols-1 gap-6">
+<!-- Project 1: Systems Development -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col">
+<div class="h-48 w-full bg-cover bg-center relative" data-alt="Visual representation of memory management and data structures" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBuYgg8_T_U3tmxicpF5V382eLSGTL8pG9Hx2a2I2E2imUgvJX3B4tmVeaBw6Di76OEEQ2RvikxVka8GgZq8Ge_btO9gPN-VJaLD3vNk5d_hzQoTolIlp0R6gqU4CFXgHjNChrLqvZREAQxuY5EaYfeNCZdmyp_EaWQHpdHiNB4FY5emuILaukbKvNDOQ7hrxpdZIP_QnY09yD34rRfXPSmhPXNxsJZrxSSSn9cCSVKyfjbNrbfzrfWIPRHy_porE1AF6cwpV0bg1Q9')">
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="px-2 py-1 bg-black/50 backdrop-blur-md text-[10px] font-bold text-white rounded border border-white/10 uppercase tracking-widest">Systems</span>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex gap-2 mb-3">
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">C++</span>
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Memory Management</span>
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Linux</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">High-Performance Cache Engine</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-normal">
+<span class="font-bold text-slate-900 dark:text-slate-200">Problem:</span> High latency in distributed data retrieval. <br/>
+<span class="font-bold text-slate-900 dark:text-slate-200">Solution:</span> Developed a thread-safe LRU cache in C++ with O(1) complexity, reducing data access time by 65%.
+                    </p>
+<div class="mt-auto flex items-center gap-3">
+<button class="flex-1 bg-primary text-white py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">open_in_new</span> Live Demo
+                        </button>
+<button class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">code</span> GitHub
+                        </button>
+</div>
+</div>
+</div>
+<!-- Project 2: Architecture (Diagram Version) -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col">
+<div class="h-48 w-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center p-6" data-alt="Architectural diagram showing producer broker and consumer nodes">
+<!-- Placeholder Diagram representation -->
+<div class="w-full h-full flex items-center justify-between gap-2 opacity-80">
+<div class="flex flex-col gap-4 w-1/4">
+<div class="h-10 border border-primary/40 rounded bg-primary/10 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-sm">input</span></div>
+<div class="h-10 border border-primary/40 rounded bg-primary/10 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-sm">input</span></div>
+</div>
+<div class="h-16 w-1/3 bg-primary rounded flex items-center justify-center relative shadow-[0_0_20px_rgba(75,43,238,0.3)]">
+<span class="text-[10px] font-bold text-white uppercase tracking-tighter">Broker</span>
+</div>
+<div class="flex flex-col gap-4 w-1/4">
+<div class="h-10 border border-primary/40 rounded bg-primary/10 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-sm">database</span></div>
+<div class="h-10 border border-primary/40 rounded bg-primary/10 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-sm">settings</span></div>
+</div>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex gap-2 mb-3">
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Go</span>
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">gRPC</span>
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Redis</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Distributed Task Queue</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-normal">
+<span class="font-bold text-slate-900 dark:text-slate-200">Problem:</span> Bottlenecks in heavy background job processing. <br/>
+<span class="font-bold text-slate-900 dark:text-slate-200">Solution:</span> Architected a horizontal-scaling message broker using Go and Redis with dead-letter queue support.
+                    </p>
+<div class="mt-auto flex items-center gap-3">
+<button class="flex-1 bg-primary text-white py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">open_in_new</span> Live Demo
+                        </button>
+<button class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">code</span> GitHub
+                        </button>
+</div>
+</div>
+</div>
+<!-- Project 3: Mobile & SQL -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col">
+<div class="h-48 w-full bg-cover bg-center" data-alt="Modern mobile application interface with data charts" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCjheaYOO42l2dczSWMC4xZoOAigRpSK6MxdfCKcwYhL8_FDOic8sI5XQ6ec0nTULeGuBkCcaQscvSaMutUZw-egRKgCqh_c4gyzhmojeyaUuEbh7FY0ARjh_rcbB766CU_bJ13aPfmHgaxRndCeDhjU5ZxZ1d_e-xS6flGhimbTRkPxrrzzTa9COCSW5eNMaT1ZKDuf3riy5E8z9jMjepcXBRxE1jDztITN-AQawI-Gd7PDuRAFvXlw-ZPNE-18xnjtIL_cuO95zXe')">
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex gap-2 mb-3">
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Kotlin</span>
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">SQLite</span>
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Encryption</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Secure Finance Tracker</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-normal">
+<span class="font-bold text-slate-900 dark:text-slate-200">Problem:</span> User privacy risks in cloud-based tracking. <br/>
+<span class="font-bold text-slate-900 dark:text-slate-200">Solution:</span> Built an offline-first Android app with SQLCipher for local AES-256 data encryption.
+                    </p>
+<div class="mt-auto flex items-center gap-3">
+<button class="flex-1 bg-primary text-white py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">open_in_new</span> Live Demo
+                        </button>
+<button class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">code</span> GitHub
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Contact Prompt -->
+<footer class="py-12 text-center">
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-4">Want to see more engineering work?</p>
+<div class="flex justify-center gap-4">
+<span class="material-symbols-outlined p-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300">link</span>
+<span class="material-symbols-outlined p-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300">terminal</span>
+<span class="material-symbols-outlined p-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300">mail</span>
+</div>
+</footer>
+</main>
+<!-- Simple Bottom Tab Bar (iOS Style) -->
+<div class="fixed bottom-0 left-0 right-0 glass-card border-t border-slate-200 dark:border-slate-800 px-8 py-2 flex justify-between items-center z-50">
+<div class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[10px] font-bold mt-0.5">Projects</span>
+</div>
+<div class="flex flex-col items-center text-slate-400">
+<span class="material-symbols-outlined">stacks</span>
+<span class="text-[10px] font-bold mt-0.5">Skills</span>
+</div>
+<div class="flex flex-col items-center text-slate-400">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold mt-0.5">About</span>
+</div>
+</div>
+<!-- Spacer for Bottom Nav -->
+<div class="h-20"></div>
+</body></html>
