@@ -154,10 +154,7 @@
     <span class="material-symbols-outlined text-[20px] mb-1">dashboard</span>
     <span class="text-[10px] font-bold uppercase tracking-widest">Projects</span>
     </a>
-    <a class="flex-1 flex flex-col items-center justify-center py-3 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#skills">
-    <span class="material-symbols-outlined text-[20px] mb-1">code</span>
-    <span class="text-[10px] font-bold uppercase tracking-widest">Skills</span>
-    </a>
+    
     <a class="flex-1 flex flex-col items-center justify-center py-3 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#contact">
     <span class="material-symbols-outlined text-[20px] mb-1">mail</span>
     <span class="text-[10px] font-bold uppercase tracking-widest">Contact</span>
@@ -905,6 +902,58 @@
                 animateSkills(category);
             });
         });
+    });
+  </script>
+  <script>
+    // Smooth-scroll hero links to sections with header offset using custom easing
+    document.addEventListener('DOMContentLoaded', () => {
+      const heroAnchors = document.querySelectorAll('#hero a[href^="#"]');
+      if (!heroAnchors.length) return;
+
+      const headerSelector = 'nav.sticky';
+
+      function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+
+      function smoothScrollTo(targetY, duration = 900) {
+        const startY = window.scrollY || window.pageYOffset;
+        const distance = targetY - startY;
+        const startTime = performance.now();
+
+        return new Promise(resolve => {
+          function step(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = easeInOutCubic(progress);
+            window.scrollTo(0, Math.round(startY + distance * eased));
+            if (elapsed < duration) {
+              requestAnimationFrame(step);
+            } else {
+              resolve();
+            }
+          }
+          requestAnimationFrame(step);
+        });
+      }
+
+      function handleHeroLinkClick(e) {
+        const href = this.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        const target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+
+        const topNav = document.querySelector(headerSelector);
+        const offset = (topNav && topNav.offsetHeight) ? topNav.offsetHeight : 0;
+        const targetY = target.getBoundingClientRect().top + window.scrollY - offset - 12;
+
+        smoothScrollTo(targetY, 900).then(() => {
+          try { history.pushState(null, '', href); } catch (err) { /* ignore */ }
+        });
+      }
+
+      heroAnchors.forEach(a => a.addEventListener('click', handleHeroLinkClick));
     });
   </script>
 </body>
