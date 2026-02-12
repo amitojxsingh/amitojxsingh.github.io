@@ -1,39 +1,911 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
   <title>Amitoj Singh | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4b2bee",
+            "background-light": "#f6f6f8",
+            "background-dark": "#07070a",
+          },
+          fontFamily: {
+            "display": ["Inter"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+
   <style>
     body {
       margin: 0;
       background: linear-gradient(180deg,#07070a 0%, #0f0f13 100%);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    iframe {
-      width: 100%;
-      border: none;
-      display: block;
-      min-height: 100vh;
-      background: transparent;
+
+    /* Hero styles */
+    .grid-pattern {
+      background-image: radial-gradient(rgba(75, 43, 238, 0.15) 1px, transparent 1px);
+      background-size: 30px 30px;
     }
+    .animated-bg{position:fixed;inset:0;z-index:-50;background:linear-gradient(120deg,#070712,#0b0720,#07102a);background-size:300% 300%;animation:gradientShift 18s ease infinite}
+    @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    .floating{position:fixed;z-index:-40;pointer-events:none}
+    .floating.circle{width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(75,43,238,0.18), transparent)}
+    .name-glow{position:relative;display:inline-block;animation:namePulse 4s ease-in-out infinite}
+    .name-glow::after{content:"";position:absolute;left:0;bottom:-8px;height:4px;width:100%;background:linear-gradient(90deg,transparent,#4b2bee 20%,#8c7bff 50%,#4b2bee 80%,transparent);opacity:0;animation:scanline 2.8s ease-in-out infinite;box-shadow:0 0 12px rgba(75,43,238,0.6)}
+    @keyframes scanline{0%{transform:translateX(-50%);opacity:0}20%{opacity:0.9}80%{opacity:0.9}100%{transform:translateX(50%);opacity:0}}
+    @keyframes namePulse{0%{text-shadow:0 0 5px rgba(75,43,238,0.3)}50%{text-shadow:0 0 20px rgba(75,43,238,0.6),0 0 30px rgba(75,43,238,0.4)}100%{text-shadow:0 0 5px rgba(75,43,238,0.3)}}
+    .title-pulse{background:linear-gradient(110deg,#ffffff 0%,#4b2bee 30%,#8c7bff 50%,#4b2bee 70%,#ffffff 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:titleShift 3s ease-in-out infinite;filter:drop-shadow(0 0 8px rgba(75,43,238,0.4))}
+    @keyframes titleShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+    /* About styles */
+    .glass-card{background:rgba(29,28,39,0.66);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1)}
+    .clipboard-toast{position:fixed;left:50%;top:50%;z-index:9999;transform:translate(-50%,-50%) scale(0.96);opacity:0;pointer-events:none;width:max-content;max-width:90vw}
+    .clipboard-toast.show{opacity:1;animation:toastLaunch 3.5s ease-out forwards}
+    @keyframes toastLaunch{0%{transform:translate(-50%,-50%) scale(0.96);opacity:0}8%{transform:translate(-50%,-50%) scale(1);opacity:1}60%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(calc(-50% + var(--tx,0px)),calc(-50% + var(--ty,-120px))) scale(1.1);opacity:0}}
+
+    /* Projects styles */
+    .project-toast{position:absolute;bottom:100%;left:50%;transform:translateX(-50%) scale(0.96);opacity:0;pointer-events:none;z-index:10;margin-bottom:8px;width:max-content;max-width:90%}
+    .project-toast.show{opacity:1;animation:projectToastLaunch 4s ease-out forwards}
+    @keyframes projectToastLaunch{0%{transform:translateX(-50%) scale(0.96) translateY(10px);opacity:0}8%{transform:translateX(-50%) scale(1) translateY(0px);opacity:1}97%{transform:translateX(-50%) scale(1) translateY(0px);opacity:1}100%{transform:translateX(-50%) scale(1.1) translateY(-20px);opacity:0}}
+    .blaster-track{position:relative;height:8px;border-radius:999px;background:linear-gradient(90deg, rgba(75,43,238,0.12), rgba(75,43,238,0.45), rgba(75,43,238,0.12));overflow:hidden;box-shadow:inset 0 0 12px rgba(75,43,238,0.35)}
+    .blaster-shot{position:absolute;top:1px;left:0;width:28px;height:6px;border-radius:999px;background:linear-gradient(90deg, #4b2bee, #8c7bff);box-shadow:0 0 14px rgba(75,43,238,0.8);animation:blasterShot 1.6s ease-in-out infinite}
+    @keyframes blasterShot{0%{transform:translateX(-10%);opacity:0}10%{opacity:1}100%{transform:translateX(110%);opacity:0}}
+    .blaster-shot:nth-child(2){animation-delay:0.35s}
+    .blaster-shot:nth-child(3){animation-delay:0.7s}
+    .blaster-shot:nth-child(4){animation-delay:1.05s}
+    .blaster-shot:nth-child(5){animation-delay:1.4s}
+    .gun-toggle{position:relative;width:56px;height:56px;border-radius:999px;background:rgba(75,43,238,0.08);border:1px solid rgba(75,43,238,0.2);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 200ms ease,box-shadow 200ms ease;overflow:visible}
+    .gun-toggle:hover{transform:scale(1.04);box-shadow:0 0 18px rgba(75,43,238,0.4)}
+    .gun-body{width:48px;height:24px;position:relative;display:block}
+    .gun-body svg{display:block;width:100%;height:100%;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3))}
+    .gun-muzzle{position:absolute;right:-4px;top:8px;width:6px;height:8px;border-radius:2px;background:linear-gradient(90deg, #2d1a70, #4b2bee);box-shadow:inset 0 1px 2px rgba(0,0,0,0.5)}
+    .gun-flash{position:absolute;right:-24px;top:-2px;width:24px;height:24px;border-radius:50%;background:radial-gradient(circle, #ffed4e 0%, #ff8c42 30%, #ff3838 60%, rgba(255,56,56,0) 80%);opacity:0;transform:scale(0.4);pointer-events:none}
+    .gun-bullet{position:absolute;right:0px;top:11px;height:3px;width:6px;border-radius:999px;background:linear-gradient(90deg, #ffed4e, #ffd700);box-shadow:0 0 8px rgba(255,215,0,0.8);opacity:0;pointer-events:none}
+    .gun-toggle.fire .gun-flash{animation:muzzleFlash 0.25s ease-out}
+    .gun-toggle.fire .gun-bullet{animation:bulletFly 0.4s ease-out}
+    @keyframes muzzleFlash{0%{opacity:0;transform:scale(0.4) rotate(0deg)}10%{opacity:1;transform:scale(1.2) rotate(15deg)}30%{opacity:0.9;transform:scale(1.5) rotate(-10deg)}100%{opacity:0;transform:scale(2) rotate(20deg)}}
+    @keyframes bulletFly{0%{opacity:0;transform:translateX(0) scale(1)}10%{opacity:1;transform:translateX(5px) scale(1)}100%{opacity:0;transform:translateX(60px) scale(0.6)}}
+    .gun-spin{animation:gunSpin 6s linear infinite}
+    .gun-spin.reverse{animation-direction:reverse}
+    @keyframes gunSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    .typing-cursor{animation:blink 1s infinite}
+    @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+
+    /* Experience styles */
+    .material-symbols-outlined{font-variation-settings:'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24}
   </style>
 </head>
 
 <body>
-  <section id="hero">
-    <iframe src="hero_&_navigation_section/code.html" title="Hero and navigation"></iframe>
-  </section>
-  <section id="about">
-    <div id="skills"></div>
-    <iframe src="about_&_skills_section/code.html" title="About and skills"></iframe>
-  </section>
-  <section id="projects">
-    <iframe src="projects_grid_section/code.html" title="Projects"></iframe>
-  </section>
-  <section id="contact">
-    <iframe src="experience_&_contact_section/code.html" title="Experience and contact"></iframe>
+  <!-- Hero Section -->
+  <section id="hero" class="min-h-screen">
+    <!-- Animated background (subtle gradient + soft blobs) -->
+    <div class="animated-bg" aria-hidden="true"></div>
+    <div class="floating circle" style="top:6%;left:-6%;"></div>
+    <div class="floating circle" style="bottom:6%;right:-8%;width:260px;height:260px;opacity:0.08"></div>
+
+    <!-- Sticky Navigation Bar -->
+    <nav class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-white/10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+    <div class="flex items-center justify-between px-6 h-16 max-w-screen-xl mx-auto">
+    <div class="flex items-center gap-2">
+    <div class="bg-primary p-1.5 rounded-lg flex items-center justify-center text-white">
+    <span class="material-symbols-outlined text-[20px]">terminal</span>
+    </div>
+    <span class="text-xl font-bold tracking-tight">AS.</span>
+    </div>
+    <!-- Mobile Menu Toggle (removed) -->
+    </div>
+    </nav>
+    <!-- Hero Section Container -->
+    <main class="relative min-h-[calc(100vh-64px)] flex flex-col items-center justify-center px-6 overflow-hidden">
+    <!-- Background Decorations -->
+    <div class="absolute inset-0 grid-pattern opacity-40 pointer-events-none"></div>
+    <div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-primary/20 blur-[120px] rounded-full pointer-events-none"></div>
+    <div class="absolute -bottom-[10%] -right-[10%] w-[30%] h-[30%] bg-primary/10 blur-[100px] rounded-full pointer-events-none"></div>
+    <!-- Content Stack -->
+    <div class="relative z-10 w-full max-w-xl flex flex-col gap-8">
+    <!-- Headers -->
+    <div class="space-y-4">
+    <h1 class="text-5xl @[480px]:text-6xl font-black tracking-tighter leading-none name-glow">
+              <span class="text-white">Amitoj</span> <span class="title-pulse">Singh</span>
+    </h1>
+    <h2 class="text-lg @[480px]:text-xl font-medium text-slate-600 dark:text-slate-400 leading-snug">
+                        <span id="typing-subtitle"></span><span class="typing-cursor">|</span>
+    </div>
+    <!-- CTA Actions -->
+    <div class="flex flex-col @[480px]:flex-row gap-4 pt-2">
+    <a class="flex h-14 items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl transition-all active:scale-[0.98] shadow-lg shadow-primary/25 px-8" href="#projects">
+    <span>View My Work</span>
+    <span class="material-symbols-outlined">arrow_forward</span>
+    </a>
+    <a href="AmitojSinghResume.pdf" download="AmitojSinghResume.pdf" class="flex h-14 items-center justify-center gap-2 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-900 dark:text-white font-bold rounded-xl transition-all active:scale-[0.98] px-8 border border-slate-200 dark:border-white/10">
+    <span class="material-symbols-outlined">download</span>
+    <span>Download Resume</span>
+    </a>
+    </div>
+    <!-- Quick Links / Tab Bar -->
+    <div class="pt-12">
+    <div class="flex items-center gap-1 p-1 bg-slate-100 dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10">
+    <a class="flex-1 flex flex-col items-center justify-center py-3 bg-white dark:bg-primary text-slate-900 dark:text-white rounded-lg shadow-sm" href="#about">
+    <span class="material-symbols-outlined text-[20px] mb-1">person</span>
+    <span class="text-[10px] font-bold uppercase tracking-widest">About</span>
+    </a>
+    <a class="flex-1 flex flex-col items-center justify-center py-3 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#projects">
+    <span class="material-symbols-outlined text-[20px] mb-1">dashboard</span>
+    <span class="text-[10px] font-bold uppercase tracking-widest">Projects</span>
+    </a>
+    <a class="flex-1 flex flex-col items-center justify-center py-3 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#skills">
+    <span class="material-symbols-outlined text-[20px] mb-1">code</span>
+    <span class="text-[10px] font-bold uppercase tracking-widest">Skills</span>
+    </a>
+    <a class="flex-1 flex flex-col items-center justify-center py-3 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#contact">
+    <span class="material-symbols-outlined text-[20px] mb-1">mail</span>
+    <span class="text-[10px] font-bold uppercase tracking-widest">Contact</span>
+    </a>
+    </div>
+    </div>
+    </div>
+    </main>
+    <!-- Project Preview Background Image Example (Hidden in Hero but ready for context) -->
+    <div class="hidden">
+    <img alt="Project Context" data-alt="Screenshot of a complex dashboard interface with code editor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5mOEICtjFhEWU3Qh-Khg5pBLHTt1br-zOPhNIUrUUZ_VVO25il7mwb_2TnnuEqLGqdilvmMArPEx6j-cHogDLmFJZXXoriTMtGK1zhOGG_QBnAx62yg-lM8RUcGn7HExBU5eBt8Cba1GlFjxzgoGr6q0NLzuWXMp5cvoe7VY4fsIzs9kUl7wPW4N_k7qEeJUFJ7ZXfsvXvjZwdRU7mEUYnwcbtGkcfK_IFycrtr4kC9TqWPaGtOr5JnrI14E20jPyzvdpfuH5kgbx"/>
+    </div>
   </section>
 
+  <!-- About Section -->
+  <section id="about" class="min-h-screen">
+    <!-- Animated background -->
+    <div class="animated-bg" aria-hidden="true"></div>
+    <div class="floating circle" style="top:8%;left:-6%;"></div>
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md p-4 justify-between border-b border-slate-200 dark:border-slate-800">
+    <a class="text-slate-900 dark:text-white flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 cursor-pointer transition-colors" href="#hero" aria-label="Back to hero">
+    <span class="material-symbols-outlined">arrow_back</span>
+    </a>
+    <h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center">Portfolio</h2>
+    <button class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 cursor-pointer transition-colors" onclick="copyWebsiteLink()" aria-label="Copy website link">
+    <span class="material-symbols-outlined text-slate-900 dark:text-white">share</span>
+    </button>
+    </header>
+    <main class="flex-1 overflow-y-auto pb-12">
+    <!-- Profile Header Section -->
+    <div class="flex p-6 @container">
+    <div class="flex w-full flex-col gap-6 items-center">
+    <div class="relative">
+    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full ring-4 ring-primary/20 p-1">
+    <img src="Me.png" alt="Portrait of Amitoj Singh" class="w-28 h-28 rounded-full object-cover shadow-xl"/>
+    </div>
+    <div class="absolute bottom-1 right-1 bg-primary text-white p-1 rounded-full border-2 border-background-dark">
+    <span class="material-symbols-outlined text-sm">verified</span>
+    </div>
+    </div>
+    <div class="flex flex-col items-center space-y-2">
+    <h1 class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight text-center">Amitoj Singh</h1>
+    <div class="flex flex-col items-center">
+    <span class="text-primary font-medium text-sm px-3 py-1 rounded-full bg-primary/10">Computer Science Student</span>
+    <p class="text-slate-500 dark:text-slate-400 text-sm mt-2 text-center max-w-[320px]">
+                            Fourth-year Computer Science student specializing in Software Practices with experience building full-stack applications using Java, Python, and modern JavaScript frameworks with a focus on animation and gaming systems.
+                        </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- About Me Section -->
+    <section class="px-6 py-4">
+    <div class="flex items-center gap-2 mb-4">
+    <span class="material-symbols-outlined text-primary">person_search</span>
+    <h2 class="text-slate-900 dark:text-white text-xl font-bold tracking-tight">About Me</h2>
+    </div>
+    <div class="space-y-4 text-slate-600 dark:text-slate-400 text-base leading-relaxed">
+    <p>
+                            4th-year Computer Science student specializing in Software Practices with experience building full-stack applications using Java, Python, and modern JavaScript frameworks.
+                        </p>
+    <p>
+                            Strong foundation in C#, .NET, SQL, web fundamentals, automated testing, and Agile development. Passionate about clean code, learning modern engineering practices, and contributing to production-grade systems in a collaborative environment.
+                        </p>
+    </div>
+    </section>
+    <!-- Skills Section -->
+    <section class="px-6 py-8 space-y-8">
+    <div class="flex items-center gap-2 mb-2">
+    <span class="material-symbols-outlined text-primary">terminal</span>
+    <h2 class="text-slate-900 dark:text-white text-xl font-bold tracking-tight">Technical Arsenal</h2>
+    </div>
+    
+    <!-- Skill Category Tabs -->
+    <div class="flex gap-2 mb-6 overflow-x-auto">
+    <button class="skill-tab active px-4 py-2 bg-primary text-white rounded-lg text-sm font-semibold whitespace-nowrap transition-all" data-category="languages">
+    <span class="material-symbols-outlined text-sm mr-1">code</span>
+    Languages
+    </button>
+    <button class="skill-tab px-4 py-2 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-semibold whitespace-nowrap transition-all" data-category="frameworks">
+    <span class="material-symbols-outlined text-sm mr-1">layers</span>
+    Frameworks
+    </button>
+    <button class="skill-tab px-4 py-2 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-semibold whitespace-nowrap transition-all" data-category="tools">
+    <span class="material-symbols-outlined text-sm mr-1">build</span>
+    Tools
+    </button>
+    <button class="skill-tab px-4 py-2 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-semibold whitespace-nowrap transition-all" data-category="concepts">
+    <span class="material-symbols-outlined text-sm mr-1">psychology</span>
+    Core Concepts
+    </button>
+    </div>
+    
+    <!-- Skills Container -->
+    <div id="skills-container" class="space-y-3">
+    <!-- Languages -->
+    <div class="skill-category languages flex flex-wrap gap-2">
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">Python</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">Java</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">C</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">C#</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">C++</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">SQL</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">JavaScript</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">TypeScript</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">HTML/CSS</span>
+    </div>
+    
+    <!-- Frameworks -->
+    <div class="skill-category frameworks flex flex-wrap gap-2 hidden">
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">Spring Boot</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">Django</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">ASP.NET Core</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">Vue.js</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">Next.js</span>
+    </div>
+    
+    <!-- Tools -->
+    <div class="skill-category tools flex flex-wrap gap-2 hidden">
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">Firebase</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">Docker</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">Postman</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">NUnit/JUnit</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">nginx</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">AWS</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">Git</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">Linux</span>
+    <span class="skill-item px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">Heroku</span>
+    </div>
+    
+    <!-- Core Concepts -->
+    <div class="skill-category concepts flex flex-wrap gap-2 hidden">
+    <span class="skill-item inline-flex items-center gap-3 px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">
+    <span class="material-symbols-outlined text-primary text-lg">api</span>
+    <span>RESTful API Development</span>
+    </span>
+    <span class="skill-item inline-flex items-center gap-3 px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">
+    <span class="material-symbols-outlined text-primary text-lg">device_hub</span>
+    <span>Distributed Systems & Cloud Deployment</span>
+    </span>
+    <span class="skill-item inline-flex items-center gap-3 px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">
+    <span class="material-symbols-outlined text-primary text-lg">data_object</span>
+    <span>Data Structures & Algorithms</span>
+    </span>
+    <span class="skill-item inline-flex items-center gap-3 px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">
+    <span class="material-symbols-outlined text-primary text-lg">engineering</span>
+    <span>System Design & CI/CD</span>
+    </span>
+    <span class="skill-item inline-flex items-center gap-3 px-3 py-1.5 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 opacity-0 transform translate-y-8 scale-95 transition-all duration-500 ease-out">
+    <span class="material-symbols-outlined text-primary text-lg">security</span>
+    <span>Security Testing (Burp Suite, Nmap, Wireshark, OWASP ZAP)</span>
+    </span>
+    </div>
+    </div>
+    </section>
+    <!-- Action Button -->
+    <div class="px-6 mt-4">
+    <a href="AmitojSinghResume.pdf" download="AmitojSinghResume.pdf" class="w-full inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/30 transition-all active:scale-[0.98]">
+    <span class="material-symbols-outlined">download</span>
+                        Download CV
+                    </a>
+    </div>
+    </main>
+    <!-- Bottom Tab Bar (iOS Style) -->
+    <nav class="h-20 bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 flex items-center justify-around px-6 pb-4">
+    <a class="flex flex-col items-center gap-1 text-primary" href="#about">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">person</span>
+    <span class="text-[10px] font-bold">About</span>
+    </a>
+    <a class="flex flex-col items-center gap-1 text-slate-400" href="#projects">
+    <span class="material-symbols-outlined">rocket_launch</span>
+    <span class="text-[10px] font-medium">Projects</span>
+    </a>
+    <a class="flex flex-col items-center gap-1 text-slate-400" href="AmitojSinghResume.pdf" download="AmitojSinghResume.pdf">
+    <span class="material-symbols-outlined">description</span>
+    <span class="text-[10px] font-medium">Resume</span>
+    </a>
+    <a class="flex flex-col items-center gap-1 text-slate-400" href="#contact">
+    <span class="material-symbols-outlined">alternate_email</span>
+    <span class="text-[10px] font-medium">Contact</span>
+    </a>
+    </nav>
+    </div>
+    <div id="clipboard-toast" class="clipboard-toast">
+    <div class="glass-card rounded-xl px-4 py-3 flex items-center gap-3 shadow-lg">
+    <span class="material-symbols-outlined text-primary">link</span>
+    <div>
+    <p class="text-sm font-semibold">Link copied! 🚀</p>
+    <p class="text-xs text-slate-300">Share Amitoj's portfolio</p>
+    </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="min-h-screen">
+    <!-- Animated background -->
+    <div class="animated-bg" aria-hidden="true"></div>
+    <div class="floating circle" style="top:10%;left:-6%;"></div>
+    <!-- Top Navigation Bar -->
+    <nav class="sticky top-0 z-50 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-3 border-b border-slate-200 dark:border-slate-800">
+    <div class="flex-1 flex items-center gap-3">
+    <div class="size-10 rounded-full bg-primary flex items-center justify-center text-white overflow-hidden ring-2 ring-primary/20">
+    <img src="Me.png" alt="Portrait of Amitoj Singh" class="w-full h-full object-cover"/>
+    </div>
+    <div>
+    <h2 class="text-sm font-bold leading-none tracking-tight">Amitoj Singh</h2>
+    <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider mt-1">Technical Animation &amp; Gameplay Systems</p>
+    </div>
+    </div>
+    <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/10 text-primary border border-primary/20 text-xs font-bold" href="AmitojSinghResume.pdf" download="AmitojSinghResume.pdf">
+            Resume
+        </a>
+    </nav>
+    <main class="p-4 space-y-6">
+    <!-- Hero Section -->
+    <header class="pt-2">
+    <div class="flex items-center gap-3 mb-3">
+    <button class="gun-toggle" id="gun-toggle" type="button" aria-label="Toggle gun rotation">
+    <div class="gun-spin" id="gun-spin">
+    <div class="gun-body">
+    <svg viewBox="0 0 140 70" aria-hidden="true">
+    <!-- Gun barrel -->
+    <rect x="75" y="27" width="50" height="16" rx="2" fill="#4b2bee"/>
+    <rect x="120" y="30" width="8" height="10" rx="1" fill="#2d1a70"/>
+    <!-- Gun body -->
+    <path d="M10 32h65v10H10z" fill="#4b2bee"/>
+    <!-- Trigger guard -->
+    <path d="M28 42v12a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4v-12z" fill="#3120a5"/>
+    <!-- Grip -->
+    <rect x="32" y="42" width="8" height="18" rx="2" fill="#6b4bff"/>
+    <!-- Magazine -->
+    <rect x="45" y="42" width="14" height="20" rx="3" fill="#2d1a70"/>
+    <!-- Slide -->
+    <rect x="62" y="24" width="28" height="8" rx="1" fill="#8c7bff"/>
+    <rect x="72" y="26" width="8" height="4" rx="1" fill="#3120a5"/>
+    <!-- Rear sight -->
+    <rect x="88" y="22" width="4" height="6" rx="1" fill="#2d1a70"/>
+    <!-- Front sight -->
+    <rect x="118" y="24" width="4" height="6" rx="1" fill="#2d1a70"/>
+    </svg>
+    <span class="gun-muzzle"></span>
+    <span class="gun-flash"></span>
+    <span class="gun-bullet"></span>
+    </div>
+    </div>
+    </button>
+    <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Featured Projects</h1>
+    </div>
+    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-sm">
+                    Selected work focusing on gameplay animation integration, systems engineering, and tooling for high-fidelity production.
+                </p>
+    <div class="mt-4 blaster-track" aria-hidden="true">
+    <span class="blaster-shot"></span>
+    <span class="blaster-shot"></span>
+    <span class="blaster-shot"></span>
+    <span class="blaster-shot"></span>
+    <span class="blaster-shot"></span>
+    </div>
+    </header>
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 gap-6">
+    <!-- Project 1: Procedural Locomotion System -->
+    <div class="glass-card rounded-xl overflow-hidden flex flex-col">
+    <div class="h-48 w-full bg-cover bg-center" data-alt="Procedural locomotion system" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=60')"></div>
+    <div class="p-5 flex flex-col flex-1">
+    <div class="flex gap-2 mb-3">
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Unreal Engine 5</span>
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">C++</span>
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Maya</span>
+    </div>
+    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Procedural Locomotion System</h3>
+    <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-normal">
+    <span class="font-bold text-slate-900 dark:text-slate-200">Summary:</span> Gameplay animation system blending MoCap with procedural leaning and foot IK for responsive movement, stable weapon platform, and grounded foot placement in Unreal Engine 5.
+                        </p>
+    <div class="mt-auto flex items-center gap-3">
+    <a class="flex-1 bg-primary text-white py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" href="mailto:amitoj2@ualberta.ca?subject=Procedural%20Locomotion%20System" target="_blank">
+    <span class="material-symbols-outlined text-sm">mail</span> Contact
+                                            </a>
+    <a class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" href="https://github.com/amitojxsingh/Procedural-Locomotion-System.git" target="_blank" rel="noopener noreferrer">
+    <span class="material-symbols-outlined text-sm">code</span> GitHub
+                                            </a>
+    </div>
+    </div>
+    </div>
+    <!-- Project 2: File System Simulator -->
+    <div class="glass-card rounded-xl overflow-visible flex flex-col">
+    <div class="h-48 w-full bg-cover bg-center" data-alt="File system simulator" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=60')"></div>
+    <div class="p-5 flex flex-col flex-1 relative">
+    <div class="flex gap-2 mb-3">
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">C</span>
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Systems</span>
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Testing</span>
+    </div>
+    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">File System Simulator</h3>
+    <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-normal">
+    <span class="font-bold text-slate-900 dark:text-slate-200">Summary:</span> Designed a simulated file system with custom system calls, integrity checks, and utilities like defragmentation and file resizing, validated with extensive tests.
+                        </p>
+    <div class="mt-auto flex items-center gap-3">
+    <a class="flex-1 bg-primary text-white py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" href="mailto:amitoj2@ualberta.ca?subject=File%20System%20Simulator" target="_blank">
+    <span class="material-symbols-outlined text-sm">mail</span> Contact
+                        </a>
+    <button class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" onclick="showGithubToast('filesystem')" type="button">
+    <span class="material-symbols-outlined text-sm">code</span> GitHub
+                        </button>
+    </div>
+    <!-- Individual toast for File System Simulator -->
+    <div id="filesystem-toast" class="project-toast">
+    <div class="glass-card rounded-xl px-4 py-3 flex items-center gap-3 shadow-lg">
+    <span class="material-symbols-outlined text-primary">rocket_launch</span>
+    <div>
+    <p class="text-sm font-semibold">File System Simulator is private for now 🚀</p>
+    <p class="text-xs text-slate-300">Email amitoj2@ualberta.ca for the link.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- Project 3: E-Commerce Performance Dashboard -->
+    <div class="glass-card rounded-xl overflow-hidden flex flex-col">
+    <div class="h-48 w-full bg-cover bg-center" data-alt="E-commerce performance dashboard" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=60')"></div>
+    <div class="p-5 flex flex-col flex-1">
+    <div class="flex gap-2 mb-3">
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Vue 3</span>
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">JavaScript</span>
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">PHP</span>
+    </div>
+    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">E-Commerce Performance Dashboard</h3>
+    <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-normal">
+    <span class="font-bold text-slate-900 dark:text-slate-200">Summary:</span> Responsive, conversion-focused dashboard using Vue 3 with a decoupled PHP JSON API. Includes realistic e-commerce KPIs, funnel visualization, and mobile-friendly layouts.
+                        </p>
+    <div class="mt-auto flex items-center gap-3">
+    <a class="flex-1 bg-primary text-white py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" href="mailto:amitoj2@ualberta.ca?subject=E-Commerce%20Dashboard" target="_blank">
+    <span class="material-symbols-outlined text-sm">mail</span> Contact
+                        </a>
+    <a class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" href="https://github.com/amitojxsingh/E-Commerce.git" target="_blank" rel="noopener noreferrer">
+    <span class="material-symbols-outlined text-sm">code</span> GitHub
+                                            </a>
+    </div>
+    </div>
+    </div>
+    <!-- Project 4: Social Distribution Network -->
+    <div class="glass-card rounded-xl overflow-visible flex flex-col">
+    <div class="h-48 w-full bg-cover bg-center relative" data-alt="Social distribution network" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=60')">
+    <div class="absolute top-3 left-3 flex gap-2">
+    <span class="px-2 py-1 bg-black/50 backdrop-blur-md text-[10px] font-bold text-white rounded border border-white/10 uppercase tracking-widest">Distributed</span>
+    </div>
+    </div>
+    <div class="p-5 flex flex-col flex-1 relative">
+    <div class="flex gap-2 mb-3">
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Django</span>
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">PostgreSQL</span>
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">REST API</span>
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Heroku</span>
+    </div>
+    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Social Distribution Network</h3>
+    <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-normal">
+    <span class="font-bold text-slate-900 dark:text-slate-200">Summary:</span> Developing a decentralized social platform with posts, follows, and interactions across distributed nodes. Built a Django REST API with PostgreSQL and deployed federated instances on Heroku with automated API tests.
+                        </p>
+    <div class="mt-auto flex items-center gap-3">
+    <a class="flex-1 bg-primary text-white py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" href="mailto:amitoj2@ualberta.ca?subject=Social%20Distribution%20Network" target="_blank">
+    <span class="material-symbols-outlined text-sm">mail</span> Contact
+                        </a>
+    <button class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" onclick="showGithubToast('social')" type="button">
+    <span class="material-symbols-outlined text-sm">code</span> GitHub
+                                            </button>
+    </div>
+    <!-- Individual toast for Social Distribution Network -->
+    <div id="social-toast" class="project-toast">
+    <div class="glass-card rounded-xl px-4 py-3 flex items-center gap-3 shadow-lg">
+    <span class="material-symbols-outlined text-primary">rocket_launch</span>
+    <div>
+    <p class="text-sm font-semibold">Social Distribution Network is private for now 🚀</p>
+    <p class="text-xs text-slate-300">Email amitoj2@ualberta.ca for the link.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- Project 5: Mood-Link Tracker -->
+    <div class="glass-card rounded-xl overflow-visible flex flex-col">
+    <div class="h-48 w-full bg-cover bg-center" data-alt="Mood tracking mobile app" style="background-image: url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=60')"></div>
+    <div class="p-5 flex flex-col flex-1 relative">
+    <div class="flex gap-2 mb-3">
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Android</span>
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Java</span>
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">Firebase</span>
+    <span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px] font-semibold">MVVM</span>
+    </div>
+    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Mood-Link Tracker</h3>
+    <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-normal">
+    <span class="font-bold text-slate-900 dark:text-slate-200">Summary:</span> Built a mobile app to log and analyze mood events with optional geolocation. Implemented Firebase Authentication, Firestore sync, social feeds, and offline-first caching with unit/integration tests.
+                        </p>
+    <div class="mt-auto flex items-center gap-3">
+    <a class="flex-1 bg-primary text-white py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" href="mailto:amitoj2@ualberta.ca?subject=Mood-Link%20Tracker" target="_blank">
+    <span class="material-symbols-outlined text-sm">mail</span> Contact
+                                            </a>
+    <button class="flex-1 bg-white/5 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2" onclick="showGithubToast('mood')" type="button">
+    <span class="material-symbols-outlined text-sm">code</span> GitHub
+                                            </button>
+    </div>
+    <!-- Individual toast for Mood-Link Tracker -->
+    <div id="mood-toast" class="project-toast">
+    <div class="glass-card rounded-xl px-4 py-3 flex items-center gap-3 shadow-lg">
+    <span class="material-symbols-outlined text-primary">rocket_launch</span>
+    <div>
+    <p class="text-sm font-semibold">Mood-Link Tracker is private for now 🚀</p>
+    <p class="text-xs text-slate-300">Email amitoj2@ualberta.ca for the link.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </main>
+    <!-- Simple Bottom Tab Bar (iOS Style) -->
+    <div class="fixed bottom-0 left-0 right-0 glass-card border-t border-slate-200 dark:border-slate-800 px-8 py-2 flex justify-between items-center z-50">
+    <a class="flex flex-col items-center text-primary" href="#projects">
+    <span class="material-symbols-outlined">grid_view</span>
+    <span class="text-[10px] font-bold mt-0.5">Projects</span>
+    </a>
+    <a class="flex flex-col items-center text-slate-400" href="#about">
+    <span class="material-symbols-outlined">stacks</span>
+    <span class="text-[10px] font-bold mt-0.5">Skills</span>
+    </a>
+    <a class="flex flex-col items-center text-slate-400" href="#contact">
+    <span class="material-symbols-outlined">person</span>
+    <span class="text-[10px] font-bold mt-0.5">Contact</span>
+    </a>
+    </div>
+    <!-- Spacer for Bottom Nav -->
+    <div class="h-20"></div>
+  </section>
+
+  <!-- Experience & Contact Section -->
+  <section id="contact" class="min-h-screen">
+    <!-- Animated background -->
+    <div class="animated-bg" aria-hidden="true"></div>
+    <div class="floating circle" style="top:6%;left:-6%;"></div>
+    <!-- Container for iOS Phone Form Factor -->
+    <div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
+    <!-- Top App Bar -->
+    <div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10 border-b border-gray-200 dark:border-gray-800">
+    <a class="text-gray-900 dark:text-white flex size-12 shrink-0 items-center justify-center cursor-pointer" href="#hero" aria-label="Back to hero">
+    <span class="material-symbols-outlined">arrow_back_ios</span>
+    </a>
+    <h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Portfolio</h2>
+    </div>
+    <!-- Experience Header -->
+    <h2 class="text-gray-900 dark:text-white tracking-tight text-[28px] font-bold leading-tight px-4 text-left pb-6 pt-8">Experience</h2>
+    <!-- Vertical Timeline -->
+    <div class="px-4 space-y-0">
+    <!-- Timeline Item 1 -->
+    <div class="grid grid-cols-[40px_1fr] gap-x-4">
+    <div class="flex flex-col items-center">
+    <div class="flex items-center justify-center size-10 rounded-full bg-primary/10 border-2 border-primary text-primary z-10 bg-background-dark">
+    <span class="material-symbols-outlined text-[20px]">work</span>
+    </div>
+    <div class="w-[2px] bg-primary/30 h-full -mt-2"></div>
+    </div>
+    <div class="flex flex-1 flex-col pb-10 pt-1">
+    <div class="flex justify-between items-start mb-1">
+    <p class="text-gray-900 dark:text-white text-lg font-bold leading-tight">Software Developer Intern</p>
+    </div>
+    <p class="text-primary font-semibold text-sm mb-3">Nestuity • Sept 2025 – December 2025</p>
+    <ul class="space-y-3">
+    <li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+    <span class="text-primary mt-1 text-[8px]">•</span>
+    <span>Building a full-stack web app for parents to track baby products, price trends, and refill reminders using Spring Boot and Next.js.</span>
+    </li>
+    <li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+    <span class="text-primary mt-1 text-[8px]">•</span>
+    <span>Integrated real-time pricing from Amazon and Walmart and automated alerts via SendGrid for low-stock and task reminders.</span>
+    </li>
+    <li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+    <span class="text-primary mt-1 text-[8px]">•</span>
+    <span>Deployed scalable microservices via Docker and nginx on AWS, practicing CI/CD for a Dec 2025 launch.</span>
+    </li>
+    <li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+    <span class="text-primary mt-1 text-[8px]">•</span>
+    <span>Performed debugging and code reviews to prevent input validation issues, insecure API usage, and injection risks.</span>
+    </li>
+    <li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+    <span class="text-primary mt-1 text-[8px]">•</span>
+    <span>Built internal tools using C# and ASP.NET Core to automate admin workflows and improve reliability.</span>
+    </li>
+    </ul>
+    </div>
+    </div>
+    <!-- Timeline Item 2 -->
+    <div class="grid grid-cols-[40px_1fr] gap-x-4">
+    <div class="flex flex-col items-center">
+    <div class="flex items-center justify-center size-10 rounded-full bg-primary/10 border-2 border-primary text-primary z-10 bg-background-dark">
+    <span class="material-symbols-outlined text-[20px]">school</span>
+    </div>
+    <div class="w-[2px] bg-primary/30 h-full -mt-2"></div>
+    </div>
+    <div class="flex flex-1 flex-col pb-10 pt-1">
+    <p class="text-gray-900 dark:text-white text-lg font-bold leading-tight">Undergraduate Teaching Assistant</p>
+    <p class="text-primary font-semibold text-sm mb-3">University of Alberta • Sept 2024 – Present</p>
+    <ul class="space-y-3">
+    <li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+    <span class="text-primary mt-1 text-[8px]">•</span>
+    <span>Guided 100+ students through data structures and algorithms labs with hands-on debugging support.</span>
+    </li>
+    <li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+    <span class="text-primary mt-1 text-[8px]">•</span>
+    <span>Supported debugging of web and backend code, reinforcing software development and testing principles.</span>
+    </li>
+    <li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+    <span class="text-primary mt-1 text-[8px]">•</span>
+    <span>Supported evaluation sessions and assignment checking to improve lab performance.</span>
+    </li>
+    </ul>
+    </div>
+    </div>
+    <!-- Timeline Item 3 -->
+    <div class="grid grid-cols-[40px_1fr] gap-x-4">
+    <div class="flex flex-col items-center">
+    <div class="flex items-center justify-center size-10 rounded-full bg-primary/10 border-2 border-primary text-primary z-10 bg-background-dark">
+    <span class="material-symbols-outlined text-[20px]">storefront</span>
+    </div>
+    <div class="w-[2px] bg-primary/30 h-full -mt-2"></div>
+    </div>
+    <div class="flex flex-1 flex-col pb-10 pt-1">
+    <p class="text-gray-900 dark:text-white text-lg font-bold leading-tight">Customer Sales Specialist</p>
+    <p class="text-primary font-semibold text-sm mb-3">PepsiCo • Aug 2024 – Present</p>
+    <ul class="space-y-3">
+    <li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+    <span class="text-primary mt-1 text-[8px]">•</span>
+    <span>Provided efficient product stocking and shelf organization using inventory management tools, enhancing product visibility and sales.</span>
+    </li>
+    <li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+    <span class="text-primary mt-1 text-[8px]">•</span>
+    <span>Managed stock rotation and maintained digital records to ensure freshness and streamline backroom operations.</span>
+    </li>
+    <li class="flex gap-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+    <span class="text-primary mt-1 text-[8px]">•</span>
+    <span>Utilized Point-of-Sale (POS) systems for display setup and product promotions.</span>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    <!-- Education Section -->
+    <h2 class="text-gray-900 dark:text-white tracking-tight text-[28px] font-bold leading-tight px-4 text-left pb-3 pt-10">Education</h2>
+    <div class="flex items-center gap-4 bg-white dark:bg-[#1e1a3a] mx-4 rounded-xl p-4 border border-gray-100 dark:border-white/5 shadow-sm">
+    <div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-14">
+    <span class="material-symbols-outlined text-[32px]">school</span>
+    </div>
+    <div class="flex flex-col justify-center">
+    <p class="text-gray-900 dark:text-white text-lg font-bold leading-tight">B.Sc. in Computer Science</p>
+    <p class="text-gray-500 dark:text-gray-400 text-sm font-medium mt-1">University of Alberta</p>
+    <p class="text-primary text-xs font-bold mt-1">Specialization: Software Practices • Jan 2023 – Present</p>
+    </div>
+    </div>
+    <!-- Scholarships Section -->
+    <h2 class="text-gray-900 dark:text-white tracking-tight text-[28px] font-bold leading-tight px-4 text-left pb-3 pt-10">Scholarships</h2>
+    <div class="mx-4 grid gap-4">
+    <div class="flex items-start gap-3 bg-white dark:bg-[#1e1a3a] rounded-xl p-4 border border-gray-100 dark:border-white/5 shadow-sm">
+    <div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-12">
+    <span class="material-symbols-outlined text-[26px]">military_tech</span>
+    </div>
+    <div>
+    <p class="text-gray-900 dark:text-white font-semibold">University of Alberta International Admission Scholarship</p>
+    <p class="text-gray-500 dark:text-gray-400 text-sm">Awarded for academic excellence.</p>
+    </div>
+    </div>
+    <div class="flex items-start gap-3 bg-white dark:bg-[#1e1a3a] rounded-xl p-4 border border-gray-100 dark:border-white/5 shadow-sm">
+    <div class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-12">
+    <span class="material-symbols-outlined text-[26px]">workspace_premium</span>
+    </div>
+    <div>
+    <p class="text-gray-900 dark:text-white font-semibold">University of Alberta Regional Excellence Scholarship</p>
+    <p class="text-gray-500 dark:text-gray-400 text-sm">Net total over $7,500.</p>
+    </div>
+    </div>
+    </div>
+    <!-- Contact Section -->
+    <div class="mt-16 px-4 pb-12">
+    <h2 class="text-gray-900 dark:text-white tracking-tight text-[28px] font-bold leading-tight text-center pb-8">Let's Connect</h2>
+    <div class="grid grid-cols-3 gap-4">
+    <a class="flex flex-col items-center justify-center aspect-square bg-white dark:bg-[#1e1a3a] rounded-2xl border border-gray-100 dark:border-white/5 hover:scale-95 transition-transform" href="mailto:amitoj2@ualberta.ca">
+    <img src="docs/email.svg" alt="Email Amitoj" class="w-12 h-12 mb-2 object-contain" />
+    <span class="text-xs font-semibold text-gray-500 dark:text-gray-400">Email</span>
+    </a>
+    <a class="flex flex-col items-center justify-center aspect-square bg-white dark:bg-[#1e1a3a] rounded-2xl border border-gray-100 dark:border-white/5 hover:scale-95 transition-transform" href="https://www.linkedin.com/in/amitojxsingh/" target="_blank">
+    <img src="docs/linkedin.svg" alt="LinkedIn" class="w-12 h-12 mb-2 object-contain" />
+    <span class="text-xs font-semibold text-gray-500 dark:text-gray-400">LinkedIn</span>
+    </a>
+    <a class="flex flex-col items-center justify-center aspect-square bg-white dark:bg-[#1e1a3a] rounded-2xl border border-gray-100 dark:border-white/5 hover:scale-95 transition-transform" href="https://github.com/amitojxsingh" target="_blank">
+    <img src="docs/github.svg" alt="GitHub" class="w-12 h-12 mb-2 object-contain" />
+    <span class="text-xs font-semibold text-gray-500 dark:text-gray-400">GitHub</span>
+    </a>
+    </div>
+    </div>
+    <!-- Footer -->
+    <footer class="mt-auto py-8 border-t border-gray-200 dark:border-gray-800 flex flex-col items-center gap-2">
+    <p class="text-gray-400 dark:text-gray-500 text-xs font-medium">© 2026 Developer Portfolio</p>
+    <div class="flex items-center gap-2 text-gray-400 dark:text-gray-600 text-[10px] uppercase tracking-widest">
+    <span>Built with</span>
+    <span class="text-primary font-bold">HTML</span>
+    <span>&amp;</span>
+    <span class="text-primary font-bold">Tailwind</span>
+    </div>
+    </footer>
+    <!-- Extra spacing for iOS Home Indicator -->
+    <div class="h-8 bg-background-light dark:bg-background-dark"></div>
+    </div>
+  </section>
+
+  <script>
+    const clipboardToast = document.getElementById('clipboard-toast');
+    let clipboardTimer;
+    function copyWebsiteLink() {
+        const websiteUrl = 'https://amitojxsingh.github.io';
+        navigator.clipboard.writeText(websiteUrl).then(() => {
+            if (!clipboardToast) return;
+            clipboardToast.style.left = '50%';
+            clipboardToast.style.top = '50%';
+            clipboardToast.style.transform = 'translate(-50%, -50%) scale(0.96)';
+            const dx = Math.round((Math.random() * 2 - 1) * 160);
+            const dy = Math.round(-120 - (Math.random() * 140));
+            clipboardToast.style.setProperty('--tx', `${dx}px`);
+            clipboardToast.style.setProperty('--ty', `${dy}px`);
+            clipboardToast.classList.remove('show');
+            void clipboardToast.offsetWidth;
+            clipboardToast.classList.add('show');
+            clearTimeout(clipboardTimer);
+            clipboardTimer = setTimeout(() => clipboardToast.classList.remove('show'), 3500);
+        }).catch(err => {
+            console.error('Failed to copy:', err);
+        });
+    }
+
+    function showGithubToast(projectId) {
+        // Hide all project toasts first
+        const allToasts = document.querySelectorAll('.project-toast');
+        allToasts.forEach(toast => toast.classList.remove('show'));
+        
+        // Show the specific project toast
+        const toastEl = document.getElementById(`${projectId}-toast`);
+        if (toastEl) {
+            toastEl.classList.add('show');
+            // Clear any existing timer
+            if (window.projectToastTimer) {
+                clearTimeout(window.projectToastTimer);
+            }
+            // Set timer to hide the toast
+            window.projectToastTimer = setTimeout(() => {
+                toastEl.classList.remove('show');
+            }, 4000);
+        }
+    }
+
+    const gunToggle = document.getElementById('gun-toggle');
+    const gunSpin = document.getElementById('gun-spin');
+    if (gunToggle && gunSpin) {
+        gunToggle.addEventListener('click', () => {
+            gunSpin.classList.toggle('reverse');
+            gunToggle.classList.remove('fire');
+            void gunToggle.offsetWidth;
+            gunToggle.classList.add('fire');
+            setTimeout(() => gunToggle.classList.remove('fire'), 420);
+        });
+    }
+
+    // Typing animation for subtitle
+    const typingText = "Fourth-year Computer Science Student | Full-Stack & Backend Systems";
+    const typingElement = document.getElementById('typing-subtitle');
+    const cursorElement = document.querySelector('.typing-cursor');
+    let charIndex = 0;
+    
+    function typeWriter() {
+        if (charIndex < typingText.length) {
+            typingElement.innerHTML += typingText.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeWriter, 25); // Adjust speed here (milliseconds)
+        } else {
+            // Hide cursor after typing is complete
+            cursorElement.style.display = 'none';
+        }
+    }
+    
+    // Start typing animation when page loads
+    window.addEventListener('load', () => {
+        setTimeout(typeWriter, 1000); // Delay before starting (1 second)
+        
+        // Initialize skills animation - show languages by default
+        setTimeout(() => {
+            animateSkills('languages');
+        }, 2000);
+    });
+
+    // Skills tab functionality
+    function animateSkills(category) {
+        // Hide all categories
+        const allCategories = document.querySelectorAll('.skill-category');
+        allCategories.forEach(cat => cat.classList.add('hidden'));
+        
+        // Update tab styles
+        const allTabs = document.querySelectorAll('.skill-tab');
+        allTabs.forEach(tab => {
+            tab.classList.remove('active', 'bg-primary', 'text-white');
+            tab.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+        });
+        
+        // Show active tab
+        const activeTab = document.querySelector(`.skill-tab[data-category="${category}"]`);
+        if (activeTab) {
+            activeTab.classList.add('active', 'bg-primary', 'text-white');
+            activeTab.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+        }
+        
+        // Show and animate the selected category
+        const categoryElement = document.querySelector(`.skill-category.${category}`);
+        if (categoryElement) {
+            categoryElement.classList.remove('hidden');
+            
+            // Reset all items
+            const items = categoryElement.querySelectorAll('.skill-item');
+            items.forEach(item => {
+                item.classList.remove('opacity-100', 'translate-y-0', 'scale-100');
+                item.classList.add('opacity-0', 'translate-y-8', 'scale-95');
+            });
+            
+            // Animate items one by one
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.remove('opacity-0', 'translate-y-8', 'scale-95');
+                    item.classList.add('opacity-100', 'translate-y-0', 'scale-100');
+                }, index * 150); // 150ms delay between each item for more dramatic effect
+            });
+        }
+    }
+    
+    // Add click event listeners to skill tabs
+    document.addEventListener('DOMContentLoaded', () => {
+        const skillTabs = document.querySelectorAll('.skill-tab');
+        skillTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const category = tab.getAttribute('data-category');
+                animateSkills(category);
+            });
+        });
+    });
+  </script>
 </body>
 </html>
